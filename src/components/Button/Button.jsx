@@ -1,9 +1,5 @@
 const Button = props => {
-	return (
-		<button>
-			{props.title} {props.count}
-		</button>
-	)
+	return <button>{props.title}</button>
 }
 
 export default Button

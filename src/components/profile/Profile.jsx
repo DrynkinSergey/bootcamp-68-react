@@ -1,5 +1,6 @@
 const Profile = ({ user }) => {
 	const { lastName, firstName, age, email, image, address } = user
+
 	return (
 		<div>
 			<img width='200' src={image} alt='user avatar' />
