@@ -1,9 +1,10 @@
 import Button from '../Button/Button'
 
-const List = ({ title = 'Default section', data }) => {
+const List = ({ title = 'Default section', data, online }) => {
 	return (
 		<section>
 			<h2>{title}</h2>
+			<h2>{online && 'Props from app'}</h2>
 			<hr />
 			<ul>
 				{data.map(item => (
