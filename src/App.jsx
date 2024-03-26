@@ -24,7 +24,7 @@ const App = () => {
 
 	return (
 		<div>
-			<Header />
+			<Header logoText='React' />
 
 			<Modal title='Реклама'>
 				<h2>Продам холодильник!</h2>
