@@ -1,16 +1,18 @@
-import PropTypes from 'prop-types'
-
-const Modal = ({ title, children }) => {
+import Button from '../Button/Button'
+import s from './Modal.module.css'
+const Modal = ({ children, title = 'Default modal' }) => {
 	return (
-		<div>
-			<h2>{title}</h2>
-			<div>{children}</div>
+		<div className={s.wrapper}>
+			<div className={s.content}>
+				<>
+					<h1>{title}</h1>
+					<hr />
+				</>
+				<Button className={s.closeBtn}>×</Button>
+				{children}
+			</div>
 		</div>
 	)
 }
 
-Modal.propTypes = {
-	title: PropTypes.string,
-	children: PropTypes.node.isRequired,
-}
 export default Modal
