@@ -1,0 +1,9 @@
+.title{
+  color:green;
+}
+.title_red{
+  color:red;
+}
+.title_red:hover{
+  color:blue
+}

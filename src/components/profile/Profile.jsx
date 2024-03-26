@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-
+import css from './Profile.module.css'
 const Profile = ({ user, message }) => {
 	const { lastName, firstName, age, email, image, address } = user
 
@@ -7,7 +7,7 @@ const Profile = ({ user, message }) => {
 		<div>
 			{message && <h1>Hello {firstName}</h1>}
 			<img width='200' src={image} alt='user avatar' />
-			<h1>
+			<h1 className={css.title_red}>
 				{firstName} {lastName}
 			</h1>
 			<p>Email: {email}</p>

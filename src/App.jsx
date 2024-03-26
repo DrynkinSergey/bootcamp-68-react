@@ -3,6 +3,8 @@ import List from './components/list/List'
 import Profile from './components/profile/Profile'
 import userData from './assets/user.json'
 import Modal from './components/modal/Modal'
+import './index.css'
+import 'modern-normalize'
 
 const App = () => {
 	const filmsData = [
@@ -26,7 +28,7 @@ const App = () => {
 		<>
 			<Header logoText='React' />
 			<Modal title='Реклама'>
-				<h2>Продам холодильник!</h2>
+				<h2 className='title'>Продам холодильник!</h2>
 				<button>OK</button>
 				<button>Cancel</button>
 			</Modal>
