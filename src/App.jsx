@@ -23,9 +23,8 @@ const App = () => {
 	const online = false
 
 	return (
-		<div>
+		<>
 			<Header logoText='React' />
-
 			<Modal title='Реклама'>
 				<h2>Продам холодильник!</h2>
 				<button>OK</button>
@@ -38,7 +37,7 @@ const App = () => {
 
 			<List online={online} data={filmsData} title='Movies' />
 			<List data={todosData} title='Todos section' />
-		</div>
+		</>
 	)
 }
 
