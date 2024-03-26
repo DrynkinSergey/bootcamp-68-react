@@ -1,0 +1,42 @@
+.list{
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap:10px;
+  max-width: 90%;
+  margin: 0 auto;
+}
+.editIcon{
+  font-size: 20px;
+  color:red;
+  &:hover{
+    color:green;
+  }
+}
+.item{
+  border: 1px solid black;
+  padding: 4px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 4px 1px gray;
+  span{
+    text-align: center;
+    display: block;
+  }
+  button{
+    background-color: teal;
+    color:white;
+    padding: 4px 12px;
+    border: none;
+    cursor: pointer;
+    transition: all .3s ease;
+    &:hover{
+      background-color: rgb(1, 79, 79);
+    }
+  }
+  .btn_wrapper{
+    display: flex;
+    gap:10px;
+    justify-content: center;
+    padding: 10px 0;
+  }
+}

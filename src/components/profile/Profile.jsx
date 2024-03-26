@@ -1,21 +1,27 @@
 import PropTypes from 'prop-types'
-import css from './Profile.module.css'
+import s from './Profile.module.css'
+import clsx from 'clsx'
 const Profile = ({ user, message }) => {
 	const { lastName, firstName, age, email, image, address } = user
 
 	return (
-		<div>
-			{message && <h1>Hello {firstName}</h1>}
-			<img width='200' src={image} alt='user avatar' />
-			<h1 className={css.title_red}>
-				{firstName} {lastName}
-			</h1>
-			<p>Email: {email}</p>
-			<p>Age: {age}</p>
-			<p>Gender: {user.gender}</p>
+		<div className={s.wrapper}>
+			<div className={s.card}>
+				{message && <h1>Hello {firstName}</h1>}
+				<div className={s.img_wrapper}>
+					<img width='200' src={image} alt='user avatar' />
+				</div>
+				<h1 className={s.name}>
+					{firstName} {lastName}
+				</h1>
+				<p>Email: {email}</p>
+				<p>Age: {age}</p>
+				<p>Gender: {user.gender}</p>
 
-			<p>Status: {age > 18 ? 'Adult' : 'Young'}</p>
-			<p>Address: {address.city}</p>
+				{/* <p className={`${s.status} ${age > 18 ? s.green : s.red}`}>Status: {age > 18 ? 'Adult' : 'Young'}</p> */}
+				<p className={clsx(s.status, age > 18 ? s.green : s.red)}>Status: {age > 18 ? 'Adult' : 'Young'}</p>
+				<p>Address: {address.city}</p>
+			</div>
 		</div>
 	)
 }

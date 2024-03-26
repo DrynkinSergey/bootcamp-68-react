@@ -1,4 +1,7 @@
 import Button from '../Button/Button'
+import s from './List.module.css'
+import { FaEdit } from 'react-icons/fa'
+import { MdDeleteOutline } from 'react-icons/md'
 
 const List = ({ title = 'Default section', data, online }) => {
 	return (
@@ -6,12 +9,19 @@ const List = ({ title = 'Default section', data, online }) => {
 			<h2>{title}</h2>
 			<h2>{online && 'Props from app'}</h2>
 			<hr />
-			<ul>
+			<ul className={s.list}>
 				{data.map(item => (
-					<li key={item.id}>
+					<li className={s.item} key={item.id}>
 						<span>{item.title}</span>
-						<Button title='Edit' />
-						<Button title='Delete' />
+						<div className={s.btn_wrapper}>
+							<Button title='Edit'>
+								<FaEdit className={s.editIcon} /> Edit
+							</Button>
+							<Button title='Delete'>
+								<MdDeleteOutline />
+								Delete
+							</Button>
+						</div>
 					</li>
 				))}
 			</ul>
