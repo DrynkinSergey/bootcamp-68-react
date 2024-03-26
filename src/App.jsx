@@ -2,6 +2,7 @@ import Header from './components/header/Header'
 import List from './components/list/List'
 import Profile from './components/profile/Profile'
 import userData from './assets/user.json'
+import Modal from './components/modal/Modal'
 
 const App = () => {
 	const filmsData = [
@@ -24,7 +25,17 @@ const App = () => {
 	return (
 		<div>
 			<Header />
-			<Profile user={userData} />
+
+			<Modal title='Реклама'>
+				<h2>Продам холодильник!</h2>
+				<button>OK</button>
+				<button>Cancel</button>
+			</Modal>
+
+			<Modal title='Профіль користувача'>
+				<Profile user={userData} />
+			</Modal>
+
 			<List online={online} data={filmsData} title='Movies' />
 			<List data={todosData} title='Todos section' />
 		</div>
