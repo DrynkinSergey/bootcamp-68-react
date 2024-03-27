@@ -6,15 +6,10 @@ export const Counter = () => {
 	const [step, setStep] = useState(1)
 
 	const handleIncrement = () => {
-		// setCounter(counter + 1)
-		// setCounter(counter + 1)
-		// setCounter(counter + 1)
-
 		setCounter(prev => prev + step)
 	}
 
 	const handleDecrement = () => {
-		// setCounter(counter - 1)
 		setCounter(prev => prev - step)
 	}
 
@@ -27,6 +22,7 @@ export const Counter = () => {
 		<div className={s.flexContainer}>
 			<div className={s.wrapper}>
 				<h1>{counter}</h1>
+
 				<input value={step} onChange={e => setStep(+e.target.value)} />
 				<div className={s.flex}>
 					<button className='btn' onClick={handleDecrement}>

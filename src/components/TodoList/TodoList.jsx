@@ -13,6 +13,10 @@ export const TodoList = () => {
 		setNewTodoTitle('')
 	}
 
+	const handleDeleteSelected = () => {
+		setTodos(prev => prev.filter(item => !item.completed))
+	}
+
 	const handleToggleTodo = id => {
 		console.log(id)
 		setTodos(prev =>
@@ -35,6 +39,11 @@ export const TodoList = () => {
 		// console.log(newData)
 		setTodos(prev => prev.filter(item => item.id !== id))
 	}
+
+	const handleDeleteAll = () => {
+		setTodos([])
+	}
+
 	return (
 		<>
 			<div className='flex'>
@@ -48,6 +57,12 @@ export const TodoList = () => {
 					<TodoItem key={item.id} {...item} handleDeleteTodo={handleDeleteTodo} handleToggleTodo={handleToggleTodo} />
 				))}
 			</ul>
+			<button onClick={handleDeleteSelected} className='btn border'>
+				Delete Selected
+			</button>
+			<button onClick={handleDeleteAll} className='btn border'>
+				Delete all
+			</button>
 		</>
 	)
 }
