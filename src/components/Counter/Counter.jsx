@@ -1,28 +1,41 @@
+import { useState } from 'react'
 import s from './Counter.module.css'
 
 export const Counter = () => {
-	const handleClick = e => {
-		// alert('Hello')
-		console.log(e)
-		e.target.innerHTML = 'Hello'
+	const [counter, setCounter] = useState(0)
+	const [step, setStep] = useState(1)
+
+	const handleIncrement = () => {
+		// setCounter(counter + 1)
+		// setCounter(counter + 1)
+		// setCounter(counter + 1)
+
+		setCounter(prev => prev + step)
 	}
 
-	const handleGreet = name => {
-		console.log('Hello ', name)
+	const handleDecrement = () => {
+		// setCounter(counter - 1)
+		setCounter(prev => prev - step)
+	}
+
+	const handleReset = () => {
+		setCounter(0)
+		setStep(1)
 	}
 
 	return (
 		<div className={s.flexContainer}>
 			<div className={s.wrapper}>
-				<h1>{0}</h1>
+				<h1>{counter}</h1>
+				<input value={step} onChange={e => setStep(+e.target.value)} />
 				<div className={s.flex}>
-					<button className='btn' onClick={handleClick}>
+					<button className='btn' onClick={handleDecrement}>
 						minus
 					</button>
-					<button className='btn' onClick={() => handleGreet('Petya')}>
+					<button className='btn' onClick={handleReset}>
 						reset
 					</button>
-					<button className='btn' onClick={() => console.log('Plus clicked!')}>
+					<button className='btn' onClick={handleIncrement}>
 						plus
 					</button>
 				</div>
