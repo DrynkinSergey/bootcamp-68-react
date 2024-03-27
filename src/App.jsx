@@ -5,9 +5,9 @@ import { TodoList } from './components/TodoList/TodoList'
 const App = () => {
 	return (
 		<>
-			<Counter />
+			{/* <Counter /> */}
 			{/* <ColorPicker /> */}
-			{/* <TodoList /> */}
+			<TodoList />
 		</>
 	)
 }
