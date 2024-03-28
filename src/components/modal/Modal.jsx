@@ -3,9 +3,7 @@ import Button from '../Button/Button'
 import s from './Modal.module.css'
 const Modal = ({ children, title = 'Default modal', closeModal }) => {
 	useEffect(() => {
-		console.log('Модалка відкрилась')
 		const handleKeyDown = e => {
-			console.log(e.key)
 			if (e.key === 'Escape') {
 				closeModal()
 			}
@@ -25,8 +23,7 @@ const Modal = ({ children, title = 'Default modal', closeModal }) => {
 			console.log('Модалка закрита!')
 			clearInterval(intervalId)
 			clearTimeout(timeoutId)
-			removeEventListener('keydown', handleKeyDown)
-			console.log('Час зупинено')
+			document.removeEventListener('keydown', handleKeyDown)
 		}
 	}, [closeModal])
 

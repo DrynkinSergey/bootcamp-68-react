@@ -1,0 +1,36 @@
+.list{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px ,1fr));
+  list-style: none;
+  padding: 20px 0;
+  margin: 0 auto;
+  max-width: 90%;
+  gap:10px;
+
+}
+
+.card{
+  img{
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+  }
+  .content{
+    padding: 5px 15px;
+  }
+  box-shadow: 2px 2px 5px 2px gray;
+  
+}
+
+.header{
+  padding: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: teal;
+  color:white;
+  button{
+    font-size: 2rem;
+  }
+}

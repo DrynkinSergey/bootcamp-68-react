@@ -4,6 +4,8 @@ import { Counter } from './components/Counter/Counter'
 import Modal from './components/Modal/Modal'
 import { TodoList } from './components/TodoList/TodoList'
 import Button from './components/Button/Button'
+import CounterState from './components/State/CounterState'
+import Products from './components/State/Products'
 
 const App = () => {
 	const [isOpen, setIsOpen] = useState(false)
@@ -21,17 +23,19 @@ const App = () => {
 		<>
 			{/* <Counter /> */}
 			{/* <ColorPicker /> */}
-			<TodoList />
-			<Button onClick={openModal}>Open modal</Button>
+			{/* <TodoList /> */}
+			{/* <Button onClick={openModal}>Open modal</Button> */}
 			{isOpen && (
 				<Modal closeModal={closeModal}>
 					<p>
-						Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit asperiores molestiae quidem, pariatur sunt
-						soluta commodi ut officia ab, accusamus esse mollitia? Nulla molestias suscipit incidunt unde harum commodi
-						perspiciatis.
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi, delectus. Porro distinctio enim dolor rerum
+						ducimus, assumenda a dolores, incidunt excepturi voluptatum vero quibusdam itaque quae nesciunt non
+						voluptates vel.
 					</p>
 				</Modal>
 			)}
+			{/* <CounterState /> */}
+			<Products />
 		</>
 	)
 }
