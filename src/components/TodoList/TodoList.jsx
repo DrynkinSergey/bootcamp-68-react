@@ -1,11 +1,22 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import todosData from './../../assets/todos.json'
 import { TodoItem } from './TodoItem'
 import s from './TodoList.module.css'
 import { nanoid } from 'nanoid'
 export const TodoList = () => {
-	const [todos, setTodos] = useState(todosData)
+	const [todos, setTodos] = useState(() => {
+		const savedData = JSON.parse(window.localStorage.getItem('todo-data'))
+		if (savedData?.length) {
+			return savedData
+		}
+		return []
+	})
+
 	const [newTodoTitle, setNewTodoTitle] = useState('')
+
+	useEffect(() => {
+		window.localStorage.setItem('todo-data', JSON.stringify(todos))
+	}, [todos])
 
 	const handleAddTodo = () => {
 		const newTodo = { id: nanoid(), todo: newTodoTitle, completed: false }
@@ -18,7 +29,6 @@ export const TodoList = () => {
 	}
 
 	const handleToggleTodo = id => {
-		console.log(id)
 		setTodos(prev =>
 			prev.map(item => {
 				if (item.id === id) {
