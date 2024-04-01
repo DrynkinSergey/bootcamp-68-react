@@ -1,7 +1,15 @@
 import { useState } from 'react'
 
 const RegisterForm = ({ onRegister }) => {
-	const [formState, setFormState] = useState({ username: '' })
+	const [formState, setFormState] = useState({
+		username: '',
+		age: 1,
+		country: 'ukraine',
+		password: '',
+		email: '',
+		gender: 'male',
+		accept: false,
+	})
 
 	const handleSubmit = e => {
 		e.preventDefault()
@@ -21,7 +29,7 @@ const RegisterForm = ({ onRegister }) => {
 
 	const handleChangeInput = e => {
 		// Деструктуризація імені поля та значення. Щоб не писати довгі конструкції
-		const { name, value } = e.target
+		const { name, value, type } = e.target
 		// switch (name) {
 		// 	case 'username':
 		// 		setFormState(prev => ({ ...prev, username: value }))
@@ -37,6 +45,9 @@ const RegisterForm = ({ onRegister }) => {
 		// }
 
 		console.log(name, value)
+		if (type === 'checkbox') {
+			return setFormState(prev => ({ ...prev, [name]: !prev[name] }))
+		}
 
 		setFormState(prev => ({ ...prev, [name]: value }))
 	}
@@ -74,6 +85,39 @@ const RegisterForm = ({ onRegister }) => {
 			<label className='label'>
 				Age
 				<input type='number' className='input' value={formState.age} onChange={handleChangeInput} name='age' />
+			</label>
+
+			<div>
+				<label>
+					<input
+						onChange={handleChangeInput}
+						checked={formState.gender === 'male'}
+						type='radio'
+						value='male'
+						name='gender'
+					/>
+					Male
+				</label>
+				<label>
+					<input
+						onChange={handleChangeInput}
+						checked={formState.gender === 'female'}
+						type='radio'
+						value='female'
+						name='gender'
+					/>
+					Female
+				</label>
+			</div>
+			<label>
+				<input
+					onChange={handleChangeInput}
+					checked={formState.accept}
+					type='checkbox'
+					className='input'
+					name='accept'
+				/>
+				Accept rules
 			</label>
 
 			<button className='btn border'>Register</button>
