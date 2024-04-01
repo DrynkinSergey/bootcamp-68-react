@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import FormIdLabels from './components/Forms/FormIdLabels'
 import RegisterForm from './components/Forms/RegisterForm'
+import Employees from './components/Employees/Employees'
 
 const App = () => {
 	const [countOfFields, setCountOfFields] = useState(3)
@@ -12,12 +13,13 @@ const App = () => {
 		}, 2000)
 	}
 	return (
-		<div className='flexCenter formWrapper'>
+		<div className=''>
 			{/* <RegisterFormUncontrolled onRegister={handleRegister} /> */}
 			{/* <RegisterForm onRegister={handleRegister} /> */}
-			<button onClick={() => setCountOfFields(prev => prev + 1)}>{countOfFields}</button>
-			<RegisterForm onRegister={handleRegister} />
-			<FormIdLabels countOfFields={countOfFields} />
+			{/* <button onClick={() => setCountOfFields(prev => prev + 1)}>{countOfFields}</button> */}
+			{/* <RegisterForm onRegister={handleRegister} /> */}
+			{/* <FormIdLabels countOfFields={countOfFields} /> */}
+			<Employees />
 		</div>
 	)
 }
