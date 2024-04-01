@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useId, useState } from 'react'
 
 const RegisterForm = ({ onRegister }) => {
+	const usernameId = useId()
 	const [formState, setFormState] = useState({
 		username: '',
 		age: 1,
@@ -54,9 +55,16 @@ const RegisterForm = ({ onRegister }) => {
 
 	return (
 		<form onSubmit={handleSubmit} className='form'>
-			<label className='label'>
+			<label htmlFor={usernameId} className='label'>
 				Username
-				<input value={formState.username} onChange={handleChangeInput} className='input' type='text' name='username' />
+				<input
+					id={usernameId}
+					value={formState.username}
+					onChange={handleChangeInput}
+					className='input'
+					type='text'
+					name='username'
+				/>
 			</label>
 			<label className='label'>
 				Email
