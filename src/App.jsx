@@ -1,4 +1,4 @@
-import RegisterForm from './components/Forms/RegisterForm'
+import RegisterFormFormik from './components/Forms/RegisterFormFormik'
 
 const App = () => {
 	const handleRegister = data => {
@@ -10,7 +10,7 @@ const App = () => {
 	}
 	return (
 		<div className='flexCenter formWrapper'>
-			<RegisterForm onRegister={handleRegister} />
+			<RegisterFormFormik onRegister={handleRegister} />
 		</div>
 	)
 }
