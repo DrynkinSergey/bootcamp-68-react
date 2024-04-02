@@ -2,10 +2,21 @@ import AddForm from './components/Books/AddForm'
 import BookList from './components/Books/BookList'
 import SearchBar from './components/Books/SearchBar'
 import booksData from './assets/books.json'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 const App = () => {
-	const [books, setBooks] = useState(booksData)
+	const [books, setBooks] = useState(() => {
+		const savedBooks = JSON.parse(window.localStorage.getItem('books'))
+		if (savedBooks?.length) {
+			return savedBooks
+		}
+		return booksData
+	})
 	const [searchStr, setSearchStr] = useState('')
+
+	useEffect(() => {
+		window.localStorage.setItem('books', JSON.stringify(books))
+	}, [books])
+
 	const handleDelete = id => {
 		setBooks(prev => prev.filter(item => item.id !== id))
 	}
