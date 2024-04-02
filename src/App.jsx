@@ -11,12 +11,21 @@ const App = () => {
 		setBooks(prev => prev.filter(item => item.id !== id))
 	}
 
+	const getFilteredData = () => {
+		return books.filter(
+			item =>
+				item.name.toLowerCase().includes(searchStr.toLowerCase()) ||
+				item.author.toLowerCase().includes(searchStr.toLowerCase()) ||
+				item.description.toLowerCase().includes(searchStr.toLowerCase())
+		)
+	}
+	const filteredData = getFilteredData()
 	return (
 		<div>
 			<h1>Book Shelf</h1>
 			<AddForm />
 			<SearchBar searchStr={searchStr} setSearch={setSearchStr} />
-			<BookList books={books} onDelete={handleDelete} />
+			<BookList books={filteredData} onDelete={handleDelete} />
 		</div>
 	)
 }
