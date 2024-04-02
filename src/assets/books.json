@@ -1,0 +1,86 @@
+[
+	{
+		"id": 1,
+		"name": "JavaScript: The Good Parts",
+		"description": "Описує найкращі практики використання JavaScript та пояснює, як уникнути його недоліків.",
+		"liked": true,
+		"author": "Дуглас Крокфорд"
+	},
+	{
+		"id": 2,
+		"name": "Eloquent JavaScript: A Modern Introduction to Programming",
+		"description": "Книга пропонує глибоке занурення в мову JavaScript, починаючи з основ і закінчуючи складними темами.",
+		"liked": false,
+		"author": "Марін Хавербеке"
+	},
+	{
+		"id": 3,
+		"name": "React: Up & Running: Building Web Applications",
+		"description": "Вивчає основи React та дозволяє швидко почати розробку з використанням цієї бібліотеки.",
+		"liked": true,
+		"author": "Стоян Стефанов"
+	},
+	{
+		"id": 4,
+		"name": "CSS Secrets: Better Solutions to Everyday Web Design Problems",
+		"description": "Пропонує багато практичних порад і хитрощів для ефективного використання CSS.",
+		"liked": true,
+		"author": "Леа Веру"
+	},
+	{
+		"id": 5,
+		"name": "HTML & CSS: Design and Build Web Sites",
+		"description": "Ця книга пропонує зрозуміле пояснення HTML та CSS для початківців з веб-розробки.",
+		"liked": false,
+		"author": "Джон Дакетт"
+	},
+	{
+		"id": 6,
+		"name": "Vue.js: Up and Running",
+		"description": "Детально описує фреймворк Vue.js та надає приклади його застосування для швидкого введення в розробку.",
+		"liked": true,
+		"author": "Калеб Портільо"
+	},
+	{
+		"id": 7,
+		"name": "Angular Development with TypeScript",
+		"description": "Посібник з розробки веб-додатків з використанням Angular та TypeScript.",
+		"liked": true,
+		"author": "Нільс Хартманн"
+	},
+	{
+		"id": 8,
+		"name": "Node.js Design Patterns",
+		"description": "Допомагає зрозуміти патерни проектування та їх використання в розробці з Node.js.",
+		"liked": false,
+		"author": "Маріо Касас"
+	},
+	{
+		"id": 9,
+		"name": "Bootstrap 4: From Scratch",
+		"description": "Навчає створювати стильні та адаптивні веб-сайти з використанням Bootstrap 4.",
+		"liked": true,
+		"author": "Джейсон Мейл"
+	},
+	{
+		"id": 10,
+		"name": "Webpack 5: From Zero to Hero",
+		"description": "Посібник з конфігурації та використання Webpack 5 в проектах веб-розробки.",
+		"liked": true,
+		"author": "Лоренцо Фонти"
+	},
+	{
+		"id": 11,
+		"name": "Sass Essentials: Mastering Stylesheets in Sass",
+		"description": "Навчає використовувати Sass для ефективного написання CSS та організації стилів.",
+		"liked": true,
+		"author": "Антонио Дельгадо"
+	},
+	{
+		"id": 12,
+		"name": "jQuery: Novice to Ninja",
+		"description": "Надає вичерпні знання про використання бібліотеки jQuery для розробки веб-додатків.",
+		"liked": false,
+		"author": "Еарл Кастл"
+	}
+]
