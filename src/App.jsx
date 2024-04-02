@@ -7,8 +7,11 @@ const App = () => {
 	const [books, setBooks] = useState(booksData)
 	const [searchStr, setSearchStr] = useState('')
 	const handleDelete = id => {
-		console.log(id)
 		setBooks(prev => prev.filter(item => item.id !== id))
+	}
+
+	const addBook = book => {
+		setBooks(prev => [book, ...prev])
 	}
 
 	const getFilteredData = () => {
@@ -23,7 +26,7 @@ const App = () => {
 	return (
 		<div>
 			<h1>Book Shelf</h1>
-			<AddForm />
+			<AddForm addBook={addBook} />
 			<SearchBar searchStr={searchStr} setSearch={setSearchStr} />
 			<BookList books={filteredData} onDelete={handleDelete} />
 		</div>
