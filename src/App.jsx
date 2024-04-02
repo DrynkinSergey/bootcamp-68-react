@@ -5,12 +5,18 @@ import booksData from './assets/books.json'
 import { useState } from 'react'
 const App = () => {
 	const [books, setBooks] = useState(booksData)
+
+	const handleDelete = id => {
+		console.log(id)
+		setBooks(prev => prev.filter(item => item.id !== id))
+	}
+
 	return (
 		<div>
 			<h1>Book Shelf</h1>
 			<AddForm />
 			<SearchBar />
-			<BookList books={books} />
+			<BookList books={books} onDelete={handleDelete} />
 		</div>
 	)
 }
