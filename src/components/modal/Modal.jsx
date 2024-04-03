@@ -8,28 +8,14 @@ const Modal = ({ children, title = 'Default modal', closeModal }) => {
 				closeModal()
 			}
 		}
-
 		document.addEventListener('keydown', handleKeyDown)
 
-		const intervalId = setInterval(() => {
-			// console.log(new Date().toLocaleTimeString())
-		}, 1000)
-
-		const timeoutId = setTimeout(() => {
-			console.log('Hello')
-		}, 3000)
-
 		return () => {
-			console.log('Модалка закрита!')
-			clearInterval(intervalId)
-			clearTimeout(timeoutId)
 			document.removeEventListener('keydown', handleKeyDown)
 		}
 	}, [closeModal])
 
 	const handleBackdropClick = e => {
-		// console.log(e.target)
-		// console.log(e.currentTarget)
 		if (e.target === e.currentTarget) {
 			closeModal()
 		}
