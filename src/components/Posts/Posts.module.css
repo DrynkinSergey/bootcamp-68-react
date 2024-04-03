@@ -17,3 +17,11 @@
     gap: 10px;
   }
 }
+.tags{
+  padding: 10px;
+  list-style: none;
+  li{
+    font-weight: bold;
+    color:blue;
+  }
+}
