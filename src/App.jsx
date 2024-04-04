@@ -1,34 +1,30 @@
-import { Counter } from './components/Counter/Counter'
-import PostsApp from './components/Posts/PostsApp'
+import { useContext, useState } from 'react'
 import { TodoList } from './components/TodoList/TodoList'
+import { UserContext } from './context/ContextProvider'
+import { LoginForm } from './LoginForm'
+import { Header } from './Header'
+import PostsApp from './components/Posts/PostsApp'
+import BooksApp from './components/Books/BooksApp'
+import Modal from './components/Modal/Modal'
+import { useToggle } from './hooks/useToggle'
 
-const App = () => {
-	const sum = (a, b) => {
-		console.log(a + b)
+const App = ({ name, surname }) => {
+	const { isLoggedIn } = useContext(UserContext)
+
+	const { toggle, isOpen } = useToggle()
+
+	if (!isLoggedIn) {
+		return <LoginForm />
 	}
-	const sayHello = () => {
-		console.log('Hello')
-	}
-	const greetings = name => {
-		console.log('Hello', name)
-	}
+
 	return (
 		<div>
-			{/* <PostsApp /> */}
-			<Counter />
+			<Header />
+			<button onClick={toggle}>Open new modal</button>
+			{isOpen && <Modal closeModal={toggle}>App modal</Modal>}
 			{/* <TodoList /> */}
-			<button onClick={sayHello} className='btn border'>
-				1
-			</button>
-			<button onClick={() => greetings('Oleh')} className='btn border'>
-				2
-			</button>
-			<button onClick={() => sum(22, 33)} className='btn border'>
-				3
-			</button>
-			<button onClick={() => console.log('InlineFn')} className='btn border'>
-				4
-			</button>
+			<PostsApp />
+			<BooksApp />
 		</div>
 	)
 }

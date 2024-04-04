@@ -115,3 +115,7 @@ img {
   color:white;
   
 }
+.flexHeader{
+display: flex;
+justify-content: space-between;
+}

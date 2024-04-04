@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { fetchPosts, fetchPostsByQuery } from '../../services/api'
 import SearchForm from './SearchForm'
 import PostList from './PostList'
@@ -7,7 +7,8 @@ import Loader from './Loader'
 import Modal from '../Modal/Modal'
 import s from './Posts.module.css'
 import { useCallback } from 'react'
-const PostsApp = () => {
+import { useToggle } from '../../hooks/useToggle'
+const PostsApp = ({ name, surname }) => {
 	const [items, setItems] = useState([])
 	const [skip, setSkip] = useState(0)
 	const [limit] = useState(6)
@@ -15,8 +16,11 @@ const PostsApp = () => {
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState(false)
 	const [totalItems, setTotalItems] = useState(0)
-	const [isOpen, setIsOpen] = useState(false)
 	const [content, setContent] = useState(null)
+
+	const { openModal, closeModal, isOpen } = useToggle()
+
+	const isFirstRender = useRef(true)
 
 	const getData = useCallback(async () => {
 		try {
@@ -37,11 +41,13 @@ const PostsApp = () => {
 	}, [limit, query, skip])
 
 	useEffect(() => {
+		if (isFirstRender.current) {
+			isFirstRender.current = false
+			return
+		}
 		getData()
 	}, [getData])
 
-	const openModal = () => setIsOpen(true)
-	const closeModal = () => setIsOpen(false)
 	const showPost = post => {
 		openModal()
 		setContent(post)
@@ -58,7 +64,7 @@ const PostsApp = () => {
 	}
 	return (
 		<>
-			<SearchForm setQuery={handleChangeQuery} />
+			<SearchForm name={name} setQuery={handleChangeQuery} surname={surname} />
 
 			{query && <h1>Current query: {query}</h1>}
 
