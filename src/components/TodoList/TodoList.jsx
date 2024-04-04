@@ -1,8 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import todosData from './../../assets/todos.json'
 import { TodoItem } from './TodoItem'
 import s from './TodoList.module.css'
 import { nanoid } from 'nanoid'
+import { Field, Form, Formik } from 'formik'
+
+import Filter from './Filter'
 export const TodoList = () => {
 	const [todos, setTodos] = useState(() => {
 		const savedData = JSON.parse(window.localStorage.getItem('todo-data'))
@@ -11,18 +14,12 @@ export const TodoList = () => {
 		}
 		return []
 	})
-
-	const [newTodoTitle, setNewTodoTitle] = useState('')
+	const [filterValue, setFilterValue] = useState('all')
+	const [value, setValue] = useState(1)
 
 	useEffect(() => {
 		window.localStorage.setItem('todo-data', JSON.stringify(todos))
 	}, [todos])
-
-	const handleAddTodo = () => {
-		const newTodo = { id: nanoid(), todo: newTodoTitle, completed: false }
-		setTodos(prev => [...prev, newTodo])
-		setNewTodoTitle('')
-	}
 
 	const handleDeleteSelected = () => {
 		setTodos(prev => prev.filter(item => !item.completed))
@@ -41,12 +38,6 @@ export const TodoList = () => {
 	}
 
 	const handleDeleteTodo = id => {
-		// 1 - Ідентифікація
-		// 2 - Пробігти по массиву та прибрати один елемент
-		// 3 - Залишити ті, що не підійшли по умові
-		// console.log(id)
-		// const newData = todos.filter(item => item.id !== id)
-		// console.log(newData)
 		setTodos(prev => prev.filter(item => item.id !== id))
 	}
 
@@ -54,25 +45,57 @@ export const TodoList = () => {
 		setTodos([])
 	}
 
+	const handleSubmit = (data, options) => {
+		const newTodo = { id: nanoid(), todo: data.newTodo, completed: false }
+		setTodos(prev => [...prev, newTodo])
+		options.resetForm()
+	}
+	const initialValues = {
+		newTodo: '',
+	}
+	const getFilteredData = () => {
+		console.log('Filter is done!')
+		switch (filterValue) {
+			case 'active':
+				return todos.filter(item => !item.completed)
+			case 'completed':
+				return todos.filter(item => item.completed)
+			default:
+				return todos
+		}
+	}
+
+	const filteredData = useMemo(() => getFilteredData(), [filterValue, todos])
+
 	return (
-		<>
-			<div className='flex'>
-				<input value={newTodoTitle} onChange={e => setNewTodoTitle(e.target.value)} className={s.input} type='text' />
-				<button onClick={handleAddTodo} className='btn border'>
-					Add
-				</button>
-			</div>
+		<section className={s.wrapper}>
+			<Formik initialValues={initialValues} onSubmit={handleSubmit}>
+				<Form className='flex'>
+					<Field className={s.input} type='text' name='newTodo' />
+					<button type='submit' className='btn border'>
+						Add
+					</button>
+				</Form>
+			</Formik>
+
+			<Filter filterValue={filterValue} setFilterValue={setFilterValue} />
+
+			<button onClick={() => setValue(prev => prev + 1)} className='btn border'>
+				Clicks count: {value}
+			</button>
+
 			<ul className={s.list}>
-				{todos.map(item => (
+				{filteredData.map(item => (
 					<TodoItem key={item.id} {...item} handleDeleteTodo={handleDeleteTodo} handleToggleTodo={handleToggleTodo} />
 				))}
 			</ul>
 			<button onClick={handleDeleteSelected} className='btn border'>
 				Delete Selected
 			</button>
+
 			<button onClick={handleDeleteAll} className='btn border'>
 				Delete all
 			</button>
-		</>
+		</section>
 	)
 }

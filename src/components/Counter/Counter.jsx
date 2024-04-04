@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import s from './Counter.module.css'
 
 export const Counter = () => {
@@ -14,9 +14,6 @@ export const Counter = () => {
 	useEffect(() => {
 		if (counter === 0) return
 		console.log('Update counter')
-		if (counter > 5) {
-			alert('Error')
-		}
 
 		if (counter < -5) {
 			setCounter(0)
@@ -51,11 +48,33 @@ export const Counter = () => {
 		setStep(1)
 	}
 
+	// getHardCalc -> 00xdr010x
+	// getHardCalc -> 11x0r010
+	// getHardCalc -> 0000r01d0
+	// getHardCalc -> 0000r01d0
+	// getHardCalc -> 0000r01d0
+	// getHardCalc -> 0000r01d0
+	// getHardCalc -> 0000r01d0
+	// getHardCalc -> 0000r01d0
+	// getHardCalc -> 0000r01d0
+	// getHardCalc -> 0000r01d0
+
+	const getHardCalc = useCallback(() => {
+		console.log('Start calc')
+		for (let i = 0; i <= 1_000_000_000; i++) {
+			let a = 1
+		}
+		console.log('End calc')
+		return step
+	}, [step])
+
+	const result = useMemo(() => getHardCalc(), [getHardCalc])
+
 	return (
 		<div className={s.flexContainer}>
 			<div className={s.wrapper}>
 				<h1>{counter}</h1>
-
+				<h2>{result}</h2>
 				<input value={step} onChange={e => setStep(+e.target.value)} />
 				<div className={s.flex}>
 					<button className='btn' onClick={handleDecrement}>

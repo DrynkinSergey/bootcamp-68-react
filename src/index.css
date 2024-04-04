@@ -110,3 +110,8 @@ img {
   width: 40%;
   margin: 20px auto;
 }
+.activeBtn{
+  background-color: blue;
+  color:white;
+  
+}

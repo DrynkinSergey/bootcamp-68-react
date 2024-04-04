@@ -1,19 +1,23 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import Button from '../Button/Button'
 import s from './Modal.module.css'
 const Modal = ({ children, title = 'Default modal', closeModal }) => {
-	useEffect(() => {
-		const handleKeyDown = e => {
+	const handleKeyDown = useCallback(
+		e => {
 			if (e.key === 'Escape') {
 				closeModal()
 			}
-		}
+		},
+		[closeModal]
+	)
+
+	useEffect(() => {
 		document.addEventListener('keydown', handleKeyDown)
 
 		return () => {
 			document.removeEventListener('keydown', handleKeyDown)
 		}
-	}, [closeModal])
+	}, [closeModal, handleKeyDown])
 
 	const handleBackdropClick = e => {
 		if (e.target === e.currentTarget) {
