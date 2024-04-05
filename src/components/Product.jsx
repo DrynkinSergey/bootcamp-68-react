@@ -1,11 +1,17 @@
 import { useContext } from 'react'
 import { FaCartArrowDown } from 'react-icons/fa6'
 import { CartContext } from '../context/CartProvider'
+import { IoBagCheckOutline } from 'react-icons/io5'
 
 const Product = ({ item }) => {
-	const { addToCart } = useContext(CartContext)
+	const { addToCart, checkInside } = useContext(CartContext)
 	return (
 		<li className='card'>
+			{checkInside(item) && (
+				<div className='iconCheck'>
+					<IoBagCheckOutline />
+				</div>
+			)}
 			<div>
 				<img src={item.thumbnail} alt={item.title} />
 			</div>

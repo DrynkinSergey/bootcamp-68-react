@@ -127,6 +127,7 @@ justify-content: space-between;
   list-style: none;
 }
 .card{
+  position: relative;
   img{
     height: 250px;
     width: 100%;
@@ -156,4 +157,46 @@ justify-content: space-between;
 }
 .content{
   padding: 0 20px;
+}
+.cartList{
+  display: flex;
+  gap:15px;
+  flex-direction: column;
+  list-style: none;
+
+}
+.cartItem{
+  display: grid;
+  grid-template-columns: 210px 1fr 200px 100px 200px;
+  align-items: center;
+  padding-bottom: 5px;
+  border-bottom: 1px solid gray;
+}
+.amount{
+  display: flex;
+  justify-content: flex-end;
+  font-weight: bold;
+  align-items: center;
+  padding: 20px 0;
+  gap:10px;
+ 
+}
+.cartWrapper{
+  padding: 20px 100px;
+}
+.iconCheck{
+  position: absolute;
+  right: 0;
+  top:0;
+  color:green;
+  border: 3px solid green;
+  font-size:34px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
