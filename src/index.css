@@ -119,3 +119,41 @@ img {
 display: flex;
 justify-content: space-between;
 }
+.list{
+  padding: 20px ;
+	display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+	gap: 10px;
+  list-style: none;
+}
+.card{
+  img{
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+  }
+  .content{
+    padding: 5px 15px;
+  }
+  box-shadow: 2px 2px 5px 2px gray;
+  
+}
+.header{
+  background-color: teal;
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  color:white;
+  font-weight: bold;
+  display: flex;
+justify-content: space-between;
+}
+.btns{
+  padding: 10px 0;
+  display: flex;
+  gap:5px;
+  justify-content: space-between;
+  align-items: center;
+}
+.content{
+  padding: 0 20px;
+}
