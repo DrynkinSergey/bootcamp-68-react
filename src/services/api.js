@@ -10,3 +10,11 @@ export const fetchProducts = async args => {
 	})
 	return data
 }
+export const fetchProductsByQuery = async args => {
+	const { data } = await axios.get('products/search', {
+		params: {
+			...args,
+		},
+	})
+	return data
+}

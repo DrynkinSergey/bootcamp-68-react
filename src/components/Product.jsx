@@ -3,7 +3,7 @@ import { FaCartArrowDown } from 'react-icons/fa6'
 import { CartContext } from '../context/CartProvider'
 import { IoBagCheckOutline } from 'react-icons/io5'
 
-const Product = ({ item }) => {
+const Product = ({ item, showProductDetails }) => {
 	const { addToCart, checkInside } = useContext(CartContext)
 	return (
 		<li className='card'>
@@ -20,7 +20,9 @@ const Product = ({ item }) => {
 				<div className='btns'>
 					<span>{item.price}$</span>
 					<div className='btns'>
-						<button className='btn border'>Show info</button>
+						<button className='btn border' onClick={() => showProductDetails(item)}>
+							Show info
+						</button>
 						<button className='btn border' onClick={() => addToCart(item)}>
 							<FaCartArrowDown />
 						</button>

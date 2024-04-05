@@ -209,3 +209,33 @@ justify-content: space-between;
 .activePage{
   background-color: blue;
 }
+.noContent{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  flex-direction: column;
+  h1{
+    text-align: center;
+  }
+
+}
+.details{
+  display: flex;
+  flex-direction: column;
+  .infoBlock{
+    display: flex;
+    justify-content: space-between;
+    gap:20px;
+
+  }
+  .detailsList{
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+  }
+  h2{
+    text-align: center;
+    padding: 20px 0;
+  }
+}

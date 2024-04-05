@@ -5,11 +5,12 @@ import Shop from './components/Shop'
 
 const App = () => {
 	const [selectedTab, setSelectedTab] = useState('home')
+	const [query, setQuery] = useState('')
 	return (
 		<>
-			<Header setSelectedTab={setSelectedTab} />
-			{selectedTab === 'home' && <Shop />}
-			{selectedTab === 'cart' && <Cart />}
+			<Header setSelectedTab={setSelectedTab} setQuery={setQuery} query={query} />
+			{selectedTab === 'home' && <Shop query={query} />}
+			{selectedTab === 'cart' && <Cart setSelectedTab={setSelectedTab} />}
 		</>
 	)
 }

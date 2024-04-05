@@ -1,9 +1,12 @@
-const EmptyCart = () => {
+const EmptyCart = ({ setSelectedTab }) => {
 	return (
-		<div>
+		<section className='noContent'>
+			<img src='https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-5521508-4610092.png' />
 			<h1>Cart is empty!</h1>
-			<button className='btn border'>Go home</button>
-		</div>
+			<button onClick={() => setSelectedTab('home')} className='btn border'>
+				Go home
+			</button>
+		</section>
 	)
 }
 
