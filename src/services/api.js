@@ -43,3 +43,7 @@ export const fetchPostsByUserId = async userId => {
 	const { data } = await axios.get(`posts/user/${userId}`)
 	return data.posts
 }
+export const fetchCommentByUserId = async userId => {
+	const { data } = await axios.get(`comments/post/${userId}`)
+	return data.comments
+}

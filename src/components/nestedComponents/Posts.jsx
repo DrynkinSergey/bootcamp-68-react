@@ -1,27 +1,27 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { fetchPostsByUserId } from '../../services/api'
 import { useParams } from 'react-router-dom'
 import { useToggle } from '../../hooks/useToggle'
 import Modal from '../modal/Modal'
+import { useHttp } from '../../hooks/useHttp'
 
 const Posts = () => {
 	const { userId } = useParams()
+
+	const [posts, _, { loading }] = useHttp(fetchPostsByUserId, userId)
+
 	const { isOpen, toggle } = useToggle()
 	const [content, setContent] = useState('')
 	const showContent = post => {
 		setContent(post)
 		toggle()
 	}
-	const [posts, setPosts] = useState([])
-
-	useEffect(() => {
-		fetchPostsByUserId(userId).then(data => setPosts(data))
-	}, [userId])
 	return (
 		<div>
 			<h2>Posts</h2>
+			{loading && <h1>Loading...</h1>}
 			<ul>
-				{posts.map(post => (
+				{posts?.map(post => (
 					<li onClick={() => showContent(post)} key={post.id}>
 						{post.title}
 					</li>

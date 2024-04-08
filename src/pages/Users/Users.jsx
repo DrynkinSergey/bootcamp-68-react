@@ -1,17 +1,15 @@
-import { useEffect, useState } from 'react'
 import s from './Users.module.css'
-import { fetchUsers } from '../../services/api'
 import { Link } from 'react-router-dom'
+import { useHttp } from '../../hooks/useHttp'
+import { fetchUsers } from './../../services/api'
 const Users = () => {
-	const [users, setUsers] = useState([])
-	useEffect(() => {
-		fetchUsers().then(data => setUsers(data))
-	}, [])
+	const [users] = useHttp(fetchUsers)
+
 	return (
 		<div className={s.users}>
 			<h1 className={s.title}>Users page</h1>
 			<ol className={s.list}>
-				{users.map(user => (
+				{users?.map(user => (
 					<li key={user.id} className={s.item}>
 						{/* https://localhost:3000/users/1 */}
 						{/* https://localhost:3000/users/25 */}
