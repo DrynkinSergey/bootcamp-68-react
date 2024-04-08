@@ -8,6 +8,8 @@ import UserDetails from './pages/UserDetails/UserDetails'
 import Company from './components/nestedComponents/Company'
 import Team from './components/nestedComponents/Team'
 import Career from './components/nestedComponents/Career'
+import Bio from './components/nestedComponents/Bio'
+import Posts from './components/nestedComponents/Posts'
 const App = () => {
 	return (
 		<Routes>
@@ -22,7 +24,10 @@ const App = () => {
 				</Route>
 
 				<Route path='users' element={<Users />} />
-				<Route path='users/:userId' element={<UserDetails />} />
+				<Route path='users/:userId' element={<UserDetails />}>
+					<Route path='bio' element={<Bio />} />
+					<Route path='posts' element={<Posts />} />
+				</Route>
 			</Route>
 			<Route path='*' element={<NotFound />} />
 		</Routes>

@@ -1,5 +1,4 @@
 import { useCallback, useEffect } from 'react'
-import Button from '../Button/Button'
 import s from './Modal.module.css'
 const Modal = ({ children, title = 'Default modal', closeModal }) => {
 	const handleKeyDown = useCallback(
@@ -32,9 +31,9 @@ const Modal = ({ children, title = 'Default modal', closeModal }) => {
 					<h1>{title}</h1>
 					<hr />
 				</>
-				<Button onClick={closeModal} className={s.closeBtn}>
+				<button onClick={closeModal} className={s.closeBtn}>
 					×
-				</Button>
+				</button>
 				{children}
 			</div>
 		</div>

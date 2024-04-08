@@ -38,3 +38,8 @@ export const fetchUsersById = async userId => {
 	const { data } = await axios.get(`users/${userId}?limit=40`)
 	return data
 }
+
+export const fetchPostsByUserId = async userId => {
+	const { data } = await axios.get(`posts/user/${userId}`)
+	return data.posts
+}
