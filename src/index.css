@@ -119,3 +119,41 @@ img {
 display: flex;
 justify-content: space-between;
 }
+.outlet{
+  padding: 20px;
+  min-height: 90vh;
+}
+.not_found{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  align-items: center;
+  background-color: teal;
+  color:white;
+  font-weight: bold;
+  font-size: 1.5rem;
+  ul{
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    color: white;
+
+  
+  }
+}
+.active{
+  color:black !important;
+}
+
+.link{
+  font-size: 24px;
+  color:white;
+  text-decoration: none;
+}
