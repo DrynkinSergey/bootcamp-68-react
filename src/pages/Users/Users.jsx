@@ -11,8 +11,6 @@ const Users = () => {
 			<ol className={s.list}>
 				{users?.map(user => (
 					<li key={user.id} className={s.item}>
-						{/* https://localhost:3000/users/1 */}
-						{/* https://localhost:3000/users/25 */}
 						<Link to={user.id.toString()}>
 							{user.firstName} {user.lastName}
 						</Link>
