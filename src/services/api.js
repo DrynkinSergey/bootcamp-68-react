@@ -29,3 +29,12 @@ export const fetchProducts = async (id, limit) => {
 	const response = await axios.get(`products?limit=${limit}&id=${id}`)
 	return response.data
 }
+
+export const fetchUsers = async () => {
+	const { data } = await axios.get(`users?limit=40`)
+	return data.users
+}
+export const fetchUsersById = async userId => {
+	const { data } = await axios.get(`users/${userId}?limit=40`)
+	return data
+}
