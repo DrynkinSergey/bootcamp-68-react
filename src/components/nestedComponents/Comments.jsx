@@ -1,6 +1,7 @@
+import { useParams } from 'react-router-dom'
+
 import { useHttp } from '../../hooks/useHttp'
 import { fetchCommentByUserId } from '../../services/api'
-import { useParams } from 'react-router-dom'
 
 const Comments = () => {
 	const { userId } = useParams()

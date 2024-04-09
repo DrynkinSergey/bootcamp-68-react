@@ -1,7 +1,8 @@
-import s from './Users.module.css'
 import { Link, useLocation } from 'react-router-dom'
+
 import { useHttp } from '../../hooks/useHttp'
 import { fetchUsers } from './../../services/api'
+import s from './Users.module.css'
 const Users = () => {
 	const [users] = useHttp(fetchUsers)
 	const location = useLocation()

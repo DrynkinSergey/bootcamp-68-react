@@ -1,6 +1,7 @@
 import { Outlet, useLocation } from 'react-router-dom'
-import Navbar from './Navbar'
 import { Suspense, useEffect } from 'react'
+
+import Navbar from './Navbar'
 
 const Layout = () => {
 	const location = useLocation()

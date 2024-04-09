@@ -1,8 +1,10 @@
 import { useState } from 'react'
-import { fetchPostsByUserId } from '../../services/api'
 import { useParams } from 'react-router-dom'
-import { useToggle } from '../../hooks/useToggle'
+
 import Modal from '../modal/Modal'
+
+import { fetchPostsByUserId } from '../../services/api'
+import { useToggle } from '../../hooks/useToggle'
 import { useHttp } from '../../hooks/useHttp'
 
 const Posts = () => {

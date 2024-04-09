@@ -1,7 +1,8 @@
 import { useParams, useLocation, Link } from 'react-router-dom'
+import { useRef } from 'react'
+
 import { useHttp } from '../../hooks/useHttp'
 import { fetchPostsById } from '../../services/api'
-import { useRef } from 'react'
 const NewDetails = () => {
 	const { newsId } = useParams()
 	const [post] = useHttp(fetchPostsById, newsId)

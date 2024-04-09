@@ -1,7 +1,9 @@
 import { Suspense, useEffect, useRef } from 'react'
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom'
+
 import { fetchUsersById } from '../../services/api'
 import { useHttp } from '../../hooks/useHttp'
+
 const UserDetails = () => {
 	const { userId } = useParams()
 	const location = useLocation()

@@ -1,4 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
+import { lazy } from 'react'
+
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import Layout from './components/Layout'
@@ -7,7 +9,10 @@ import Team from './components/nestedComponents/Team'
 import Career from './components/nestedComponents/Career'
 import News from './pages/News/News'
 import NewDetails from './pages/NewDetails/NewDetails'
-import { lazy } from 'react'
+
+import { useHttp } from './hooks/useHttp'
+import { useToggle } from './hooks/useToggle'
+import { fetchCommentByUserId } from './services/api'
 
 const Users = lazy(() => import('./pages/Users/Users'))
 const About = lazy(() => import('./pages/About'))

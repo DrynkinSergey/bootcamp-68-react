@@ -1,4 +1,5 @@
 import { useCallback, useEffect } from 'react'
+
 import s from './Modal.module.css'
 const Modal = ({ children, title = 'Default modal', closeModal }) => {
 	const handleKeyDown = useCallback(

@@ -1,8 +1,10 @@
-import SearchBar from './SearchBar'
-import { useHttp } from './../../hooks/useHttp'
-import { fetchPosts, fetchPostsByQuery } from './../../services/api'
 import { Link, useSearchParams, useLocation } from 'react-router-dom'
 import { useMemo } from 'react'
+
+import SearchBar from './SearchBar'
+
+import { useHttp } from './../../hooks/useHttp'
+import { fetchPosts, fetchPostsByQuery } from './../../services/api'
 
 const News = () => {
 	const [searchParams, setSearchParams] = useSearchParams()
