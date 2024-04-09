@@ -5,6 +5,7 @@ import { fetchCommentByUserId } from '../../services/api'
 
 const Comments = () => {
 	const { userId } = useParams()
+
 	const [comments, setComments, { loading }] = useHttp(fetchCommentByUserId, userId)
 	return (
 		<div>

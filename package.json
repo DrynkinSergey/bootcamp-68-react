@@ -13,6 +13,7 @@
 		"axios": "^1.6.8",
 		"clsx": "^2.1.0",
 		"formik": "^2.4.5",
+		"framer-motion": "^11.0.25",
 		"modern-normalize": "^2.0.0",
 		"nanoid": "^5.0.6",
 		"prop-types": "^15.8.1",

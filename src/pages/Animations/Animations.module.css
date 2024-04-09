@@ -1,0 +1,7 @@
+.box{
+  border: 3px solid black;
+  width: 200px;
+  height: 200px;
+  margin: 40px ;
+  cursor: pointer;
+}

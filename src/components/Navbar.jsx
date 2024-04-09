@@ -30,6 +30,11 @@ const Navbar = () => {
 						News
 					</NavLink>
 				</li>
+				<li>
+					<NavLink className={activeStyleLink} to='/animations'>
+						Animations
+					</NavLink>
+				</li>
 			</ul>
 		</header>
 	)
