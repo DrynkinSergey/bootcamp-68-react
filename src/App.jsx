@@ -23,7 +23,7 @@ const App = () => {
 					<Route path='team' element={<Team />} />
 					<Route path='career' element={<Career />} />
 				</Route>
-
+				{/* https://localhost:3000/users/:userId/bio */}
 				<Route path='users' element={<Users />} />
 				<Route path='users/:userId' element={<UserDetails />}>
 					<Route path='bio' element={<Bio />} />

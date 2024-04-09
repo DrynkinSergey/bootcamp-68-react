@@ -1,11 +1,17 @@
-import { useEffect, useState } from 'react'
-import { Link, Outlet } from 'react-router-dom'
-import { useParams } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
+import { Link, Outlet, useNavigate, useParams, useLocation } from 'react-router-dom'
 import { fetchUsersById } from '../../services/api'
 import { useHttp } from '../../hooks/useHttp'
 const UserDetails = () => {
 	const { userId } = useParams()
+	const navigate = useNavigate()
+	const location = useLocation()
+	const goBackRef = useRef(location.state?.from)
 
+	useEffect(() => {
+		console.log(location)
+		console.log(goBackRef.current)
+	}, [location])
 	const [user] = useHttp(fetchUsersById, userId)
 
 	if (!user) {
@@ -14,7 +20,7 @@ const UserDetails = () => {
 
 	return (
 		<div>
-			<Link to='/users'>Back</Link>
+			<Link to={goBackRef.current}>Back</Link>
 			<h2>UserDetails #{userId}</h2>
 			<div className='userDetails'>
 				<div>
