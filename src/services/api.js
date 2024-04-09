@@ -6,22 +6,25 @@ axios.defaults.baseURL = 'https://dummyjson.com/'
 export const fetchPosts = async args => {
 	const response = await axios.get(`posts`, {
 		params: {
-			limit: 6,
 			...args,
 		},
 	})
-	return response.data
+	return response.data.posts
 }
 
 //https://dummyjson.com/posts/search?q=love
 export const fetchPostsByQuery = async args => {
 	const response = await axios.get(`posts/search`, {
 		params: {
-			limit: 6,
 			...args,
 		},
 	})
-	return response.data
+	return response.data.posts
+}
+
+export const fetchPostsById = async id => {
+	const { data } = await axios.get(`posts/${id}`)
+	return data
 }
 
 // https://dummyjson.com/products

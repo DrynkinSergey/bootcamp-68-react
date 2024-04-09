@@ -11,6 +11,8 @@ import Career from './components/nestedComponents/Career'
 import Bio from './components/nestedComponents/Bio'
 import Posts from './components/nestedComponents/Posts'
 import Comments from './components/nestedComponents/Comments'
+import News from './pages/News/News'
+import NewDetails from './pages/NewDetails/NewDetails'
 const App = () => {
 	return (
 		<Routes>
@@ -25,6 +27,9 @@ const App = () => {
 				</Route>
 				{/* https://localhost:3000/users/:userId/bio */}
 				<Route path='users' element={<Users />} />
+				<Route path='news' element={<News />} />
+				<Route path='news/:newsId' element={<NewDetails />} />
+
 				<Route path='users/:userId' element={<UserDetails />}>
 					<Route path='bio' element={<Bio />} />
 					<Route path='posts' element={<Posts />} />
