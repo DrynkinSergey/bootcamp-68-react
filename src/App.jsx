@@ -1,18 +1,20 @@
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
-import About from './pages/About'
 import NotFound from './pages/NotFound'
 import Layout from './components/Layout'
-import Users from './pages/Users/Users'
-import UserDetails from './pages/UserDetails/UserDetails'
 import Company from './components/nestedComponents/Company'
 import Team from './components/nestedComponents/Team'
 import Career from './components/nestedComponents/Career'
-import Bio from './components/nestedComponents/Bio'
-import Posts from './components/nestedComponents/Posts'
-import Comments from './components/nestedComponents/Comments'
 import News from './pages/News/News'
 import NewDetails from './pages/NewDetails/NewDetails'
+import { lazy } from 'react'
+
+const Users = lazy(() => import('./pages/Users/Users'))
+const About = lazy(() => import('./pages/About'))
+const UserDetails = lazy(() => import('./pages/UserDetails/UserDetails'))
+const Bio = lazy(() => import('./components/nestedComponents/Bio'))
+const Posts = lazy(() => import('./components/nestedComponents/Posts'))
+const Comments = lazy(() => import('./components/nestedComponents/Comments'))
 const App = () => {
 	return (
 		<Routes>
@@ -25,7 +27,6 @@ const App = () => {
 					<Route path='team' element={<Team />} />
 					<Route path='career' element={<Career />} />
 				</Route>
-				{/* https://localhost:3000/users/:userId/bio */}
 				<Route path='users' element={<Users />} />
 				<Route path='news' element={<News />} />
 				<Route path='news/:newsId' element={<NewDetails />} />

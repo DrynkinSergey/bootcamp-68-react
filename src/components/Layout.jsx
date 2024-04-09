@@ -1,6 +1,6 @@
 import { Outlet, useLocation } from 'react-router-dom'
 import Navbar from './Navbar'
-import { useEffect } from 'react'
+import { Suspense, useEffect } from 'react'
 
 const Layout = () => {
 	const location = useLocation()
@@ -12,7 +12,9 @@ const Layout = () => {
 			<Navbar />
 			<section className='outlet'>
 				{/* Аутлет показує де знаходяться на сторінці маршрути */}
-				<Outlet />
+				<Suspense fallback={<div>Loading...</div>}>
+					<Outlet />
+				</Suspense>
 			</section>
 		</div>
 	)

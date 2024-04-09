@@ -1,10 +1,9 @@
-import { useEffect, useRef, useState } from 'react'
-import { Link, Outlet, useNavigate, useParams, useLocation } from 'react-router-dom'
+import { Suspense, useEffect, useRef } from 'react'
+import { Link, Outlet, useParams, useLocation } from 'react-router-dom'
 import { fetchUsersById } from '../../services/api'
 import { useHttp } from '../../hooks/useHttp'
 const UserDetails = () => {
 	const { userId } = useParams()
-	const navigate = useNavigate()
 	const location = useLocation()
 	const goBackRef = useRef(location.state?.from)
 
@@ -36,7 +35,9 @@ const UserDetails = () => {
 					<Link to='comments'>Show user comments</Link>
 				</div>
 				<div>
-					<Outlet />
+					<Suspense fallback={<div>Second suspense</div>}>
+						<Outlet />
+					</Suspense>
 				</div>
 			</div>
 		</div>
