@@ -162,3 +162,6 @@ justify-content: space-between;
   display: grid;
   grid-template-columns: 1fr 2fr;
 }
+.liked{
+  background-color: lightgreen;
+}

@@ -1,5 +1,5 @@
 import booksData from '../../assets/books.json'
-import { ADD_BOOK, CHANGE_SEARCH_STR, DELETE_BOOK } from './constants'
+import { ADD_BOOK, CHANGE_SEARCH_STR, DELETE_BOOK, TOGGLE_LIKE } from './constants'
 const initialState = {
 	books: booksData,
 	filter: '',
@@ -21,6 +21,11 @@ export const booksReducer = (state = initialState, action) => {
 			return {
 				...state,
 				filter: action.payload,
+			}
+		case TOGGLE_LIKE:
+			return {
+				...state,
+				books: state.books.map(item => (item.id === action.payload ? { ...item, liked: !item.liked } : item)),
 			}
 		default:
 			return state
