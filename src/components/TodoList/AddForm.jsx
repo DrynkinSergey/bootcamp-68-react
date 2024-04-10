@@ -3,7 +3,7 @@ import s from './TodoList.module.css'
 
 const AddForm = ({ addTodo }) => {
 	const handleSubmit = (data, options) => {
-		addTodo(data)
+		addTodo(data.newTodo)
 		options.resetForm()
 	}
 	const initialValues = {

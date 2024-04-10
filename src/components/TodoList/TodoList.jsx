@@ -5,30 +5,39 @@ import Filter from './Filter'
 import AddForm from './AddForm'
 import ItemsList from './ItemsList'
 import OptionsBtns from './OptionsBtns'
+import { useSelector, useDispatch } from 'react-redux'
+import { selectTodos, selectFilter } from './../../redux/todolist/selectors'
+import { ADD_TODO } from '../../redux/todolist/constants'
+import { nanoid } from 'nanoid'
+import { addNewTodo, deleteAll, deleteSelected, deleteTodo, toggleTodo } from '../../redux/todolist/actions'
 export const TodoList = () => {
-	const [todos, setTodos] = useState(() => {
-		const savedData = JSON.parse(window.localStorage.getItem('todo-data'))
-		if (savedData?.length) {
-			return savedData
-		}
-		return []
-	})
-	const [filterValue, setFilterValue] = useState('all')
+	const todos = useSelector(selectTodos)
+	const filter = useSelector(selectFilter)
 
-	useEffect(() => {
-		window.localStorage.setItem('todo-data', JSON.stringify(todos))
-	}, [todos])
+	const dispatch = useDispatch()
 
-	const handleDeleteSelected = () => {}
+	const handleDeleteSelected = () => {
+		dispatch(deleteSelected())
+	}
 
-	const handleToggleTodo = id => {}
+	const handleToggleTodo = id => {
+		dispatch(toggleTodo(id))
+	}
 
-	const handleDeleteTodo = id => {}
+	const handleDeleteTodo = id => {
+		dispatch(deleteTodo(id))
+	}
 
-	const handleDeleteAll = () => {}
+	const handleDeleteAll = () => {
+		dispatch(deleteAll())
+	}
+
+	const addTodo = data => {
+		dispatch(addNewTodo(data))
+	}
 
 	const getFilteredData = () => {
-		switch (filterValue) {
+		switch (filter) {
 			case 'active':
 				return todos.filter(item => !item.completed)
 			case 'completed':
@@ -37,13 +46,12 @@ export const TodoList = () => {
 				return todos
 		}
 	}
-	const addTodo = data => {}
 
 	const filteredData = getFilteredData()
 	return (
 		<section className={s.wrapper}>
 			<AddForm addTodo={addTodo} />
-			<Filter filterValue={filterValue} setFilterValue={setFilterValue} />
+			<Filter />
 			<ItemsList data={filteredData} handleDeleteTodo={handleDeleteTodo} handleToggleTodo={handleToggleTodo} />
 			<OptionsBtns handleDeleteAll={handleDeleteAll} handleDeleteSelected={handleDeleteSelected} />
 		</section>

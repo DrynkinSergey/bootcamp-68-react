@@ -4,9 +4,9 @@ import { TodoList } from './components/TodoList/TodoList'
 const App = () => {
 	return (
 		<>
-			<Counter />
+			{/* <Counter /> */}
 			<TodoList />
-			<BooksApp />
+			{/* <BooksApp /> */}
 		</>
 	)
 }
