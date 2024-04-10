@@ -1,33 +1,25 @@
-import booksData from '../../assets/books.json'
-import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import AddForm from './AddForm'
 import SearchBar from './SearchBar'
 import BookList from './BookList'
+import { useSelector, useDispatch } from 'react-redux'
+import { selectBooks, selectFilter } from '../../redux/books/selectors'
+import { addNewBook, deleteBook } from '../../redux/books/actions'
 
 const BooksApp = () => {
-	const [books, setBooks] = useState(() => {
-		const savedBooks = JSON.parse(window.localStorage.getItem('books'))
-		if (savedBooks?.length) {
-			return savedBooks
-		}
-		return booksData
-	})
-	const [searchStr, setSearchStr] = useState('')
-
-	useEffect(() => {
-		window.localStorage.setItem('books', JSON.stringify(books))
-	}, [books])
-
-	const handleDelete = id => {}
+	const books = useSelector(selectBooks)
+	const searchStr = useSelector(selectFilter)
+	const dispatch = useDispatch()
+	const handleDelete = id => {
+		dispatch(deleteBook(id))
+	}
 
 	const addBook = book => {
 		const isExist = books.some(item => item.name === book.name && item.author === book.author)
-		console.log(isExist)
 		if (isExist) {
 			return toast.error('This book already exist!')
 		}
-		setBooks(prev => [book, ...prev])
+		dispatch(addNewBook(book))
 		toast.success('Book was added! 🔥')
 	}
 
@@ -45,7 +37,7 @@ const BooksApp = () => {
 		<div>
 			<h1>Book Shelf</h1>
 			<AddForm addBook={addBook} />
-			<SearchBar searchStr={searchStr} setSearch={setSearchStr} />
+			<SearchBar searchStr={searchStr} />
 			<BookList searchStr={searchStr} books={filteredData} onDelete={handleDelete} />
 		</div>
 	)
