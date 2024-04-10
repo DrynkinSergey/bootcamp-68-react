@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux'
 import { toggleLike } from '../../redux/books/actions'
-import { TOGGLE_LIKE } from '../../redux/books/constants'
 import clsx from 'clsx'
 const BookItem = ({ item, onDelete }) => {
 	const dispatch = useDispatch()
