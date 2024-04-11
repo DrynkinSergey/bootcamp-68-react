@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import s from './TodoList.module.css'
 import { useDispatch } from 'react-redux'
-import { changeFilter } from '../../redux/todolist/actions'
+import { changeFilter } from '../../redux/todolist/slice'
 
 const Filter = ({ filterValue }) => {
 	const btns = ['all', 'active', 'completed']
