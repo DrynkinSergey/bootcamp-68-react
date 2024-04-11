@@ -3,8 +3,8 @@ import AddForm from './AddForm'
 import SearchBar from './SearchBar'
 import BookList from './BookList'
 import { useSelector, useDispatch } from 'react-redux'
-import { selectBooks, selectFilter } from '../../redux/books/selectors'
-import { addNewBook, deleteBook } from '../../redux/books/actions'
+import { addNewBook, deleteBook, selectBooks } from '../../redux/books/slice'
+import { selectFilter } from '../../redux/filterSlice'
 
 const BooksApp = () => {
 	const books = useSelector(selectBooks)

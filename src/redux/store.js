@@ -1,7 +1,8 @@
-import { booksReducer } from './books/reducer'
 import { configureStore } from '@reduxjs/toolkit'
 import { counterReducer } from './counter/slice'
 import { todosReducer } from './todolist/slice'
+import { booksReducer } from './books/slice'
+import { filterReducer } from './filterSlice'
 
 // Створюємо стор та передаємо обов'язково reducer.
 // Якщо використовуємо в проекті 1 редьюсер, передаємо як один
@@ -11,5 +12,6 @@ export const store = configureStore({
 		todos: todosReducer,
 		counter: counterReducer,
 		books: booksReducer,
+		filter: filterReducer,
 	},
 })

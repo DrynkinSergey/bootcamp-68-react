@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { changeSearchStr } from '../../redux/books/actions'
+import { changeSearchStr } from '../../redux/filterSlice'
 const SearchBar = ({ searchStr }) => {
 	const dispatch = useDispatch()
 	return (

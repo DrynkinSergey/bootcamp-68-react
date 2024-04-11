@@ -6,15 +6,8 @@ import AddForm from './AddForm'
 import ItemsList from './ItemsList'
 import OptionsBtns from './OptionsBtns'
 import { useSelector, useDispatch } from 'react-redux'
-import {
-	addNewTodo,
-	deleteAll,
-	deleteSelected,
-	deleteTodo,
-	selectFilter,
-	selectTodos,
-	toggleTodo,
-} from '../../redux/todolist/slice'
+import { addNewTodo, deleteAll, deleteSelected, deleteTodo, selectTodos, toggleTodo } from '../../redux/todolist/slice'
+import { selectFilter } from '../../redux/filterSlice'
 
 export const TodoList = () => {
 	const todos = useSelector(selectTodos)
