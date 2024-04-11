@@ -1,10 +1,10 @@
-import { changeStep, decrement, increment, reset } from '../../redux/counter/actions'
-import { selectCounter, selectStep } from '../../redux/counter/selectors'
+import { changeStep, decrement, increment, reset, selectCounter, selectStep } from '../../redux/counter/slice'
 import s from './Counter.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 export const Counter = () => {
 	const counter = useSelector(selectCounter)
 	const step = useSelector(selectStep)
+
 	const dispatch = useDispatch()
 
 	const handleIncrement = () => {
