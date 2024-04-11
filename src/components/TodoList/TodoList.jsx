@@ -7,8 +7,6 @@ import ItemsList from './ItemsList'
 import OptionsBtns from './OptionsBtns'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectTodos, selectFilter } from './../../redux/todolist/selectors'
-import { ADD_TODO } from '../../redux/todolist/constants'
-import { nanoid } from 'nanoid'
 import { addNewTodo, deleteAll, deleteSelected, deleteTodo, toggleTodo } from '../../redux/todolist/actions'
 export const TodoList = () => {
 	const todos = useSelector(selectTodos)
