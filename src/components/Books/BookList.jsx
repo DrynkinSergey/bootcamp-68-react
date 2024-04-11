@@ -13,7 +13,7 @@ const BookList = ({ books = [], onDelete, searchStr }) => {
 	return (
 		<ul>
 			<h2>Book list</h2>
-			{books.map(book => (
+			{books.reverse().map(book => (
 				<BookItem item={book} key={book.id} onDelete={onDelete} />
 			))}
 			<button onClick={openModal} className='btn border'>
