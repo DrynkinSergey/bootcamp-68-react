@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux'
-import { selectTopics } from '../redux/topicSlice'
+import { selectFilteredData } from '../redux/topicSlice'
 import { TopicCard } from '../components/TopicCard'
 
 export const Home = () => {
-	const topics = useSelector(selectTopics)
+	const topics = useSelector(selectFilteredData)
 	return (
 		<div>
 			<h1>Active topics:</h1>

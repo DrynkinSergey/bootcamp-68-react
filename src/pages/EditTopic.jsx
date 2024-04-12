@@ -1,25 +1,29 @@
 import { Field, Form, Formik } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectTags } from '../redux/tagsSlice'
-import { addTopic } from '../redux/topicSlice'
-import { useNavigate } from 'react-router-dom'
-import { selectAuthorName } from '../redux/authSlice'
+import { editTopic, selectTopicByTitle } from '../redux/topicSlice'
+import { useNavigate, useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
-export const CreateTopic = () => {
+export const EditTopic = () => {
+	const { topicTitle } = useParams()
+	const topic = useSelector(state => selectTopicByTitle(state, topicTitle))
+
 	const tags = useSelector(selectTags)
-	const userName = useSelector(selectAuthorName)
 
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
+
 	const handleSubmit = values => {
-		dispatch(addTopic(values))
-		navigate('/')
+		dispatch(editTopic({ ...topic, ...values }))
+		navigate(`/topic/${values.title}`)
+		toast.info('Topic edited!')
 	}
 	const initialValues = {
-		title: '',
-		desc: '',
-		tag: 'other',
-		author: userName,
+		title: topic.title,
+		desc: topic.desc,
+		tag: topic.tag,
+		author: topic.author,
 	}
 	return (
 		<div className='flexCenter'>
@@ -35,7 +39,7 @@ export const CreateTopic = () => {
 						))}
 					</Field>
 					<button className='btn border' type='submit'>
-						Add topic
+						Edit topic
 					</button>
 					<button onClick={() => navigate('/')} className='btn border red' type='button'>
 						Cancel
