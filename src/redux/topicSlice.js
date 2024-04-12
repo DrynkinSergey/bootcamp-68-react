@@ -46,9 +46,13 @@ const slice = createSlice({
 			const topic = state.items.find(topic => topic.id === action.payload)
 			topic.dislikes++
 		},
+		addComment: (state, action) => {
+			const topic = state.items.find(topic => topic.id === action.payload.id)
+			topic.comments.push(action.payload.comment)
+		},
 	},
 })
 
-export const { addTopic, increaseViews, increaseLikeCount, increaseDisLikeCount } = slice.actions
+export const { addTopic, increaseViews, increaseLikeCount, increaseDisLikeCount, addComment } = slice.actions
 export const { selectTopics, selectTopicByTitle } = slice.selectors
 export const topicReducer = slice.reducer

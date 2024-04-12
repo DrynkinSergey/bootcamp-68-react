@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { increaseDisLikeCount, increaseLikeCount, increaseViews, selectTopicByTitle } from '../redux/topicSlice'
 import { useParams } from 'react-router-dom'
+import { CommentForm } from '../components/CommentForm'
 
 export const Topic = () => {
 	const { topicTitle } = useParams()
@@ -35,10 +36,15 @@ export const Topic = () => {
 			<p>{topic.createdAt}</p>
 			<p>{topic.author}</p>
 			<h2>Comments:</h2>
+			<CommentForm topicId={topic.id} />
 			{topic.comments.length ? (
-				<ul>
+				<ul className='commentList'>
 					{topic.comments.map(comment => (
-						<li key={comment.id}>{comment.text}</li>
+						<li className='comment' key={comment.id}>
+							<h2>{comment.text}</h2>
+							<p>{comment.author}</p>
+							<p>{comment.createdAt}</p>
+						</li>
 					))}
 				</ul>
 			) : (
