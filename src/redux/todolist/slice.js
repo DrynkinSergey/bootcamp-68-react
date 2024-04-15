@@ -1,4 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, isAnyOf } from '@reduxjs/toolkit'
+import { addTodoThunk, deleteTodoThunk, fetchData, updateStatusThunk, updateTitleThunk } from './operations'
 const initialState = {
 	todos: [],
 	filter: 'all',
@@ -21,52 +22,69 @@ const slice = createSlice({
 		selectIsLoading: state => state.isLoading,
 	},
 	reducers: {
-		deleteTodo: (state, { payload }) => {
-			state.todos = state.todos.filter(item => item.id !== payload)
-		},
-		toggleTodo: (state, { payload }) => {
-			const item = state.todos.find(item => item.id === payload)
-			item.completed = !item.completed
-		},
-		deleteAll: state => {
-			state.todos = []
-		},
-		deleteSelected: state => {
-			state.todos = state.todos.filter(item => !item.completed)
-		},
 		changeFilter: (state, { payload }) => {
 			state.filter = payload
 		},
-		addNewTodo: (state, { payload }) => {
-			state.todos.push(payload)
-		},
-		isLoading: (state, { payload }) => {
-			state.isLoading = payload
-		},
-		isError: (state, { payload }) => {
-			state.isError = payload
-		},
-		dataFetched: (state, { payload }) => {
-			state.todos = payload
-		},
-		updateTitle: (state, { payload }) => {
-			const itemIndex = state.todos.findIndex(item => item.id === payload.id)
-			state.todos[itemIndex].todo = payload.todo
-		},
+	},
+	extraReducers: builder => {
+		builder
+			.addCase(fetchData.fulfilled, (state, { payload }) => {
+				state.todos = payload
+			})
+
+			.addCase(deleteTodoThunk.fulfilled, (state, { payload }) => {
+				state.todos = state.todos.filter(item => item.id !== payload)
+			})
+
+			.addCase(addTodoThunk.fulfilled, (state, { payload }) => {
+				state.todos.push(payload)
+			})
+
+			.addCase(updateStatusThunk.fulfilled, (state, { payload }) => {
+				const item = state.todos.find(item => item.id === payload.id)
+				item.completed = !item.completed
+			})
+
+			.addCase(updateTitleThunk.fulfilled, (state, { payload }) => {
+				const item = state.todos.find(item => item.id === payload.id)
+				item.todo = payload.todo
+			})
+
+			.addMatcher(
+				isAnyOf(fetchData.pending, deleteTodoThunk.pending, addTodoThunk.pending, updateStatusThunk.pending),
+				state => {
+					state.isLoading = true
+					state.isError = false
+				}
+			)
+			.addMatcher(
+				isAnyOf(
+					fetchData.rejected,
+					deleteTodoThunk.rejected,
+					addTodoThunk.rejected,
+					updateStatusThunk.rejected,
+					updateTitleThunk.rejected
+				),
+				(state, { payload }) => {
+					state.isLoading = false
+					state.isError = payload
+				}
+			)
+			.addMatcher(
+				isAnyOf(
+					fetchData.fulfilled,
+					deleteTodoThunk.fulfilled,
+					addTodoThunk.fulfilled,
+					updateStatusThunk.fulfilled,
+					updateTitleThunk.fulfilled
+				),
+				state => {
+					state.isLoading = false
+				}
+			)
 	},
 })
 
 export const todosReducer = slice.reducer
-export const {
-	addNewTodo,
-	deleteAll,
-	deleteSelected,
-	deleteTodo,
-	changeFilter,
-	toggleTodo,
-	isLoading,
-	isError,
-	dataFetched,
-	updateTitle,
-} = slice.actions
+export const { changeFilter } = slice.actions
 export const { selectFilter, selectTodos, selectIsError, selectIsLoading } = slice.selectors
