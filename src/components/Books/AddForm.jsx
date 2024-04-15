@@ -1,7 +1,9 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { nanoid } from 'nanoid'
+import { useDispatch } from 'react-redux'
 import * as Yup from 'yup'
-const AddForm = ({ addBook }) => {
+import { addBookThunk } from '../../redux/books/operations'
+const AddForm = () => {
 	const addSchema = Yup.object().shape({
 		name: Yup.string().min(3, 'Field must be more than 3').max(100, 'Field must be less than 100').required('Required'),
 		author: Yup.string().min(3, 'Field must be more than 3').max(25, 'Field must be less than 25').required('Required'),
@@ -16,8 +18,9 @@ const AddForm = ({ addBook }) => {
 		description: '',
 		liked: false,
 	}
+	const dispatch = useDispatch()
 	const handleSubmit = (data, options) => {
-		addBook({ ...data, id: nanoid() })
+		dispatch(addBookThunk(data))
 		options.resetForm()
 	}
 	return (

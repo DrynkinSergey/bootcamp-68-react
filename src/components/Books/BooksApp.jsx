@@ -3,25 +3,19 @@ import AddForm from './AddForm'
 import SearchBar from './SearchBar'
 import BookList from './BookList'
 import { useSelector, useDispatch } from 'react-redux'
-import { addNewBook, deleteBook, selectBooks } from '../../redux/books/slice'
+import { selectBooks } from '../../redux/books/slice'
 import { selectFilter } from '../../redux/filterSlice'
+import { fetchBooksThunk } from '../../redux/books/operations'
+import { useEffect } from 'react'
 
 const BooksApp = () => {
 	const books = useSelector(selectBooks)
 	const searchStr = useSelector(selectFilter)
 	const dispatch = useDispatch()
-	const handleDelete = id => {
-		dispatch(deleteBook(id))
-	}
 
-	const addBook = book => {
-		const isExist = books.some(item => item.name === book.name && item.author === book.author)
-		if (isExist) {
-			return toast.error('This book already exist!')
-		}
-		dispatch(addNewBook(book))
-		toast.success('Book was added! 🔥')
-	}
+	useEffect(() => {
+		dispatch(fetchBooksThunk())
+	}, [dispatch])
 
 	const getFilteredData = () => {
 		return books.filter(
@@ -36,9 +30,9 @@ const BooksApp = () => {
 	return (
 		<div>
 			<h1>Book Shelf</h1>
-			<AddForm addBook={addBook} />
+			<AddForm />
 			<SearchBar searchStr={searchStr} />
-			<BookList searchStr={searchStr} books={filteredData} onDelete={handleDelete} />
+			<BookList searchStr={searchStr} books={filteredData} />
 		</div>
 	)
 }
