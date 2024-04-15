@@ -6,14 +6,27 @@ import AddForm from './AddForm'
 import ItemsList from './ItemsList'
 import OptionsBtns from './OptionsBtns'
 import { useSelector, useDispatch } from 'react-redux'
-import { addNewTodo, deleteAll, deleteSelected, deleteTodo, selectTodos, toggleTodo } from '../../redux/todolist/slice'
+import {
+	addNewTodo,
+	deleteAll,
+	deleteSelected,
+	deleteTodo,
+	selectIsLoading,
+	selectTodos,
+	toggleTodo,
+} from '../../redux/todolist/slice'
 import { selectFilter } from '../../redux/filterSlice'
+import { deleteTodoThunk, fetchData } from '../../redux/todolist/operations'
 
 export const TodoList = () => {
 	const todos = useSelector(selectTodos)
 	const filter = useSelector(selectFilter)
-
+	const isLoading = useSelector(selectIsLoading)
 	const dispatch = useDispatch()
+
+	useEffect(() => {
+		dispatch(fetchData())
+	}, [dispatch])
 
 	const handleDeleteSelected = () => {
 		dispatch(deleteSelected())
@@ -24,15 +37,11 @@ export const TodoList = () => {
 	}
 
 	const handleDeleteTodo = id => {
-		dispatch(deleteTodo(id))
+		dispatch(deleteTodoThunk(id))
 	}
 
 	const handleDeleteAll = () => {
 		dispatch(deleteAll())
-	}
-
-	const addTodo = data => {
-		dispatch(addNewTodo(data))
 	}
 
 	const getFilteredData = () => {
@@ -49,8 +58,9 @@ export const TodoList = () => {
 	const filteredData = getFilteredData()
 	return (
 		<section className={s.wrapper}>
-			<AddForm addTodo={addTodo} />
+			<AddForm />
 			<Filter />
+			{isLoading && <p>Loading...</p>}
 			<ItemsList data={filteredData} handleDeleteTodo={handleDeleteTodo} handleToggleTodo={handleToggleTodo} />
 			<OptionsBtns handleDeleteAll={handleDeleteAll} handleDeleteSelected={handleDeleteSelected} />
 		</section>
