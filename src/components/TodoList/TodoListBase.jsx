@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import s from './TodoList.module.css'
 
 import Filter from './Filter'
@@ -19,10 +19,11 @@ export const TodoListBase = () => {
 	const uncompleted = useSelector(selectMemoData)
 	const isLoading = useSelector(selectIsLoading)
 	const dispatch = useDispatch()
+	const [limit, setLimit] = useState(10)
 
 	useEffect(() => {
-		dispatch(fetchData())
-	}, [dispatch])
+		dispatch(fetchData(limit))
+	}, [dispatch, limit])
 
 	const handleDeleteTodo = id => {
 		dispatch(deleteTodoThunk(id))
@@ -35,6 +36,11 @@ export const TodoListBase = () => {
 			{isLoading && <p>Loading...</p>}
 			<h1>Uncompleted tasks: {uncompleted}</h1>
 			<input className='input' onChange={e => dispatch(changeValue(e.target.value))} />
+			<select className='input' onChange={e => setLimit(e.target.value)}>
+				<option value='10'>10</option>
+				<option value='20'>20</option>
+				<option value='30'>30</option>
+			</select>
 			<ItemsList data={todos} handleDeleteTodo={handleDeleteTodo} />
 		</section>
 	)

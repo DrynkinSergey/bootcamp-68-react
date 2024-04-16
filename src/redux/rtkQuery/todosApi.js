@@ -6,11 +6,11 @@ export const todoApi = createApi({
 	refetchOnFocus: true,
 	refetchOnReconnect: true,
 	baseQuery: fetchBaseQuery({
-		baseUrl: 'https://661ccf58e7b95ad7fa6b33a5.mockapi.io/',
+		baseUrl: 'https://dummyjson.com/',
 	}),
 	endpoints: builder => ({
 		getTodos: builder.query({
-			query: () => 'todos',
+			query: limit => `todos?limit=${limit}`,
 			providesTags: ['todos'],
 		}),
 		addTodo: builder.mutation({
