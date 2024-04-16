@@ -5,6 +5,7 @@ import { filterReducer } from './filterSlice'
 import moment from 'moment'
 import { toast } from 'react-toastify'
 import { todoApi } from './rtkQuery/todosApi'
+import { setupListeners } from '@reduxjs/toolkit/query'
 
 const myLogger = store => next => action => {
 	// console.log(moment().format('YYYY-MM-DD HH:mm:ss'), action)
@@ -27,3 +28,5 @@ export const store = configureStore({
 	},
 	middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false }).concat(todoApi.middleware),
 })
+
+setupListeners(store.dispatch)

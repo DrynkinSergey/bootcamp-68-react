@@ -14,7 +14,7 @@ import {
 	selectUncompletedTodosMemo,
 } from '../../redux/todolist/selectors'
 
-export const TodoList = () => {
+export const TodoListBase = () => {
 	const todos = useSelector(selectFilteredDataMemo)
 	const uncompleted = useSelector(selectMemoData)
 	const isLoading = useSelector(selectIsLoading)

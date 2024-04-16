@@ -1,9 +1,12 @@
 import { Field, Form, Formik } from 'formik'
 import s from './TodoList.module.css'
+import { useAddTodoMutation } from '../../redux/rtkQuery/todosApi'
 
 const AddForm = () => {
+	const [addTodo] = useAddTodoMutation()
 	const handleSubmit = (data, options) => {
 		options.resetForm()
+		addTodo(data)
 	}
 	const initialValues = {
 		todo: '',
