@@ -6,7 +6,7 @@ axios.defaults.baseURL = 'https://dummyjson.com'
 
 export const fetchData = createAsyncThunk('todos/fetchTodos', async (limit, thunkAPI) => {
 	try {
-		const { data } = await axios.get(`todos?limit=${limit}`)
+		const { data } = await axios.get(`todos`)
 		return data.todos
 	} catch (error) {
 		return thunkAPI.rejectWithValue(error.message)
