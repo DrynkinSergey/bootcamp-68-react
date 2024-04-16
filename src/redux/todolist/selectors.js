@@ -17,7 +17,6 @@ export const selectFilteredData = state => {
 }
 
 export const selectFilteredDataMemo = createSelector([selectTodos, selectFilter], (todos, filter) => {
-	console.log('FIlter is done!')
 	switch (filter) {
 		case 'active':
 			return todos.filter(item => !item.completed)

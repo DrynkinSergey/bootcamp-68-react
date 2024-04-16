@@ -1,11 +1,9 @@
-import { TodoList } from './components/TodoList/TodoList'
+import { TodoList } from './components/TodoListQuery/TodoList'
 
 const App = () => {
 	return (
 		<>
-			{/* <TodoList /> */}
 			<TodoList />
-			{/* <BooksApp /> */}
 		</>
 	)
 }

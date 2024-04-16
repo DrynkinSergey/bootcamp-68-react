@@ -23,7 +23,6 @@ const slice = createSlice({
 		selectIsError: state => state.isError,
 		selectIsLoading: state => state.isLoading,
 		selectMemoData: createSelector([state => state.todos], todos => {
-			console.log('calculate is done!')
 			return todos.reduce((total, item) => (!item.completed ? total + 1 : total), 0)
 		}),
 	},
