@@ -4,6 +4,7 @@ import { booksReducer } from './books/slice'
 import { filterReducer } from './filterSlice'
 import moment from 'moment'
 import { toast } from 'react-toastify'
+import { todoApi } from './rtkQuery/todosApi'
 
 const myLogger = store => next => action => {
 	// console.log(moment().format('YYYY-MM-DD HH:mm:ss'), action)
@@ -22,6 +23,7 @@ export const store = configureStore({
 		todolist: todosReducer,
 		books: booksReducer,
 		filter: filterReducer,
+		[todoApi.reducerPath]: todoApi.reducer,
 	},
-	middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false }).concat(myLogger),
+	middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false }).concat(todoApi.middleware),
 })
