@@ -1,5 +1,8 @@
-import { createSlice, isAnyOf } from '@reduxjs/toolkit'
+import { createSelector, createSlice, isAnyOf } from '@reduxjs/toolkit'
 import { addTodoThunk, deleteTodoThunk, fetchData, updateStatusThunk, updateTitleThunk } from './operations'
+// state.todolist.todos
+// state.todolist.filter
+// state.todolist.isLoading
 const initialState = {
 	todos: [],
 	filter: 'all',
@@ -13,16 +16,19 @@ const initialState = {
 // D - delete
 
 const slice = createSlice({
-	name: 'todos',
+	name: 'todolist',
 	initialState,
 	selectors: {
 		selectTodos: state => state.todos,
-		selectFilter: state => state.filter,
 		selectIsError: state => state.isError,
 		selectIsLoading: state => state.isLoading,
+		selectMemoData: createSelector([state => state.todos], todos => {
+			console.log('calculate is done!')
+			return todos.reduce((total, item) => (!item.completed ? total + 1 : total), 0)
+		}),
 	},
 	reducers: {
-		changeFilter: (state, { payload }) => {
+		changeValue: (state, { payload }) => {
 			state.filter = payload
 		},
 	},
@@ -86,5 +92,5 @@ const slice = createSlice({
 })
 
 export const todosReducer = slice.reducer
-export const { changeFilter } = slice.actions
-export const { selectFilter, selectTodos, selectIsError, selectIsLoading } = slice.selectors
+export const { changeValue } = slice.actions
+export const { selectTodos, selectIsError, selectIsLoading, selectMemoData } = slice.selectors

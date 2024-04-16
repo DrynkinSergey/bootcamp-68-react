@@ -1,7 +1,7 @@
 import booksData from '../../assets/books.json'
 import { createSlice } from '@reduxjs/toolkit'
 import { addBookThunk, deleteBookThunk, fetchBooksThunk, toggleLikeThunk } from './operations'
-
+// state.books.books
 const initialState = {
 	books: booksData,
 }
