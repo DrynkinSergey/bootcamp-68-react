@@ -87,6 +87,20 @@ img {
   border-radius: 4px;
   box-shadow: 2px 2px 4px 1px gray;
   font-size: 1.5rem;
+  width: 100%;
+}
+.inputWrapper{
+  position: relative;
+
+}
+.iconBtn{
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
 }
 .label{
   display: flex;
