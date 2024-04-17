@@ -5,8 +5,15 @@ import Todos from './pages/Todos'
 import NotFound from './pages/NotFound'
 import Register from './pages/Register'
 import Login from './pages/Login'
+import { useDispatch } from 'react-redux'
+import { refreshThunk } from './redux/auth/operations'
+import { useEffect } from 'react'
 
 const App = () => {
+	const dispatch = useDispatch()
+	useEffect(() => {
+		dispatch(refreshThunk())
+	}, [dispatch])
 	return (
 		<>
 			<Routes>
