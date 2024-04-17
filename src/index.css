@@ -91,7 +91,7 @@ img {
 }
 .inputWrapper{
   position: relative;
-
+ 
 }
 .iconBtn{
   position: absolute;
@@ -182,4 +182,39 @@ justify-content: space-between;
 }
 .liked{
   background-color: lightgreen;
+}
+ul{
+  list-style: none;
+}
+.notesList{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap:20px;
+  padding: 20px;
+
+}
+.note{
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+  box-shadow: 2px 2px 4px 1px gray;
+  font-size: 1.5rem;
+
+}
+.tags{
+  display: flex;
+  gap:5px;
+  flex-wrap: wrap;
+  font-size: 1.2rem;
+  li{
+    border: 1px solid black;
+    padding: 2px 5px;
+    border-radius: 4px;
+    background-color: lightgray;
+    color: black;
+    font-weight: bold;
+  }
 }
