@@ -5,20 +5,27 @@ import Todos from './pages/Todos'
 import NotFound from './pages/NotFound'
 import Register from './pages/Register'
 import Login from './pages/Login'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { refreshThunk } from './redux/auth/operations'
 import { useEffect } from 'react'
 import PrivateRoute from './routes/PrivateRoute'
 import PublicRoute from './routes/PublicRoute'
 import Forum from './pages/Forum'
 import ForumInfo from './pages/ForumInfo'
+import { selectIsRefreshing } from './redux/auth/slice'
+import Loader from './components/Loader'
 
 const App = () => {
 	const dispatch = useDispatch()
+	const isRefreshing = useSelector(selectIsRefreshing)
+	console.log(isRefreshing)
 	useEffect(() => {
 		dispatch(refreshThunk())
 	}, [dispatch])
-	return (
+
+	return isRefreshing ? (
+		<Loader />
+	) : (
 		<>
 			<Routes>
 				<Route path='/' element={<Layout />}>
