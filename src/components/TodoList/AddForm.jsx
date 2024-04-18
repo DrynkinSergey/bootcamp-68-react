@@ -10,12 +10,12 @@ const AddForm = () => {
 		options.resetForm()
 	}
 	const initialValues = {
-		todo: '',
+		text: '',
 	}
 	return (
 		<Formik initialValues={initialValues} onSubmit={handleSubmit}>
 			<Form className='flex'>
-				<Field className={s.input} type='text' name='todo' />
+				<Field className={s.input} type='text' name='text' />
 				<button type='submit' className='btn border'>
 					Add
 				</button>

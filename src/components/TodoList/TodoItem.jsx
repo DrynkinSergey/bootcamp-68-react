@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
 import s from './TodoList.module.css'
 import { updateStatusThunk, updateTitleThunk } from '../../redux/todolist/operations'
-export const TodoItem = ({ id, completed, todo, handleDeleteTodo }) => {
+export const TodoItem = ({ id, completed, text, handleDeleteTodo }) => {
 	const dispatch = useDispatch()
 
 	return (
@@ -9,9 +9,9 @@ export const TodoItem = ({ id, completed, todo, handleDeleteTodo }) => {
 			<input
 				checked={completed}
 				type='checkbox'
-				onChange={() => dispatch(updateStatusThunk({ id, completed, todo }))}
+				onChange={() => dispatch(updateStatusThunk({ id, completed, text }))}
 			/>
-			<span onClick={() => dispatch(updateTitleThunk({ id, completed, todo }))}>{todo}</span>
+			<span onClick={() => dispatch(updateTitleThunk({ id, completed, text }))}>{text}</span>
 
 			<button onClick={() => handleDeleteTodo(id)} className='btn border' size='18px'>
 				Delete

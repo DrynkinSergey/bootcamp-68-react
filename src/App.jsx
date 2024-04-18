@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { lazy, useEffect } from 'react'
+import { Suspense, lazy, useEffect } from 'react'
 
 import Layout from './components/Layout'
 import Loader from './components/Loader'
@@ -29,7 +29,7 @@ const App = () => {
 	return isRefreshing ? (
 		<Loader />
 	) : (
-		<>
+		<Suspense fallback={null}>
 			<Routes>
 				<Route path='/' element={<Layout />}>
 					<Route index element={<Home />} />
@@ -71,7 +71,7 @@ const App = () => {
 				{/* <Route path='*' element={<Navigate to='/' />} /> */}
 				<Route path='*' element={<NotFound />} />
 			</Routes>
-		</>
+		</Suspense>
 	)
 }
 

@@ -1,13 +1,10 @@
-import axios from 'axios'
-
 import { createAsyncThunk } from '@reduxjs/toolkit'
-
-axios.defaults.baseURL = 'https://dummyjson.com'
+import { goitApi } from '../../config/goitApi'
 
 export const fetchData = createAsyncThunk('todos/fetchTodos', async (limit, thunkAPI) => {
 	try {
-		const { data } = await axios.get(`todos`)
-		return data.todos
+		const { data } = await goitApi.get(`tasks`)
+		return data
 	} catch (error) {
 		return thunkAPI.rejectWithValue(error.message)
 	}
@@ -15,7 +12,7 @@ export const fetchData = createAsyncThunk('todos/fetchTodos', async (limit, thun
 
 export const deleteTodoThunk = createAsyncThunk('todos/deleteTodo', async (id, thunkAPI) => {
 	try {
-		const { data } = await axios.delete(`todos/${id}`)
+		const { data } = await goitApi.delete(`tasks/${id}`)
 		return data.id
 	} catch (error) {
 		return thunkAPI.rejectWithValue(error.message)
@@ -24,7 +21,7 @@ export const deleteTodoThunk = createAsyncThunk('todos/deleteTodo', async (id, t
 
 export const addTodoThunk = createAsyncThunk('todos/addTodo', async (todo, thunkAPI) => {
 	try {
-		const { data } = await axios.post(`todos`, todo)
+		const { data } = await goitApi.post(`tasks`, todo)
 		return data
 	} catch (error) {
 		return thunkAPI.rejectWithValue(error.message)
@@ -33,16 +30,16 @@ export const addTodoThunk = createAsyncThunk('todos/addTodo', async (todo, thunk
 
 export const updateStatusThunk = createAsyncThunk('todos/toggleTodo', async (todo, thunkAPI) => {
 	try {
-		const { data } = await axios.put(`todos/${todo.id}`, { ...todo, completed: !todo.completed })
+		const { data } = await goitApi.put(`tasks/${todo.id}`, { ...todo, completed: !todo.completed })
 		return data
 	} catch (error) {
 		return thunkAPI.rejectWithValue(error.message)
 	}
 })
 
-export const updateTitleThunk = createAsyncThunk('todos/updateTitle', async (todo, thunkAPI) => {
+export const updateTitleThunk = createAsyncThunk('tasks/updateTitle', async (todo, thunkAPI) => {
 	try {
-		const { data } = await axios.put(`todos/${todo.id}`, { ...todo, todo: prompt('Enter new title') })
+		const { data } = await goitApi.put(`tasks/${todo.id}`, { ...todo, todo: prompt('Enter new title') })
 		return data
 	} catch (error) {
 		return thunkAPI.rejectWithValue(error.message)

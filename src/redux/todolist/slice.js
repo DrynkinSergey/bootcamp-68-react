@@ -1,5 +1,6 @@
 import { createSelector, createSlice, isAnyOf } from '@reduxjs/toolkit'
 import { addTodoThunk, deleteTodoThunk, fetchData, updateStatusThunk, updateTitleThunk } from './operations'
+import { logoutThunk } from '../auth/operations'
 // state.todolist.todos
 // state.todolist.filter
 // state.todolist.isLoading
@@ -33,6 +34,9 @@ const slice = createSlice({
 	},
 	extraReducers: builder => {
 		builder
+			.addCase(logoutThunk.pending, state => {
+				state.todos = []
+			})
 			.addCase(fetchData.fulfilled, (state, { payload }) => {
 				state.todos = payload
 			})
