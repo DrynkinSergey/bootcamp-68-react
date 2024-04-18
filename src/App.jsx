@@ -9,6 +9,10 @@ import PublicRoute from './routes/PublicRoute'
 
 import { refreshThunk } from './redux/auth/operations'
 import { selectIsRefreshing } from './redux/auth/slice'
+import Notes from './pages/Notes/Notes'
+import AddNoteForm from './pages/Notes/AddNoteForm'
+import SingleNote from './pages/Notes/SingleNote'
+import EditNoteForm from './pages/Notes/EditNoteForm'
 
 const Todos = lazy(() => import('./pages/Todos'))
 const Forum = lazy(() => import('./pages/Forum'))
@@ -35,6 +39,10 @@ const App = () => {
 					<Route index element={<Home />} />
 					<Route path='forum' element={<Navigate to='/blog' />} />
 					<Route path='blog' element={<Forum />} />
+					<Route path='notes' element={<Notes />} />
+					<Route path='notes/:id' element={<SingleNote />} />
+					<Route path='notes/:id/edit' element={<EditNoteForm />} />
+					<Route path='notes/add' element={<AddNoteForm />} />
 					<Route
 						path='blog/info'
 						element={

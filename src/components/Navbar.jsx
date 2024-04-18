@@ -23,6 +23,9 @@ const Navbar = () => {
 				<li>
 					<NavLink to='/blog'>Forum</NavLink>
 				</li>
+				<li>
+					<NavLink to='/notes'>Notes</NavLink>
+				</li>
 				{!isLoggedIn && (
 					<>
 						<li>

@@ -5,6 +5,7 @@ import { filterReducer } from './filterSlice'
 import { authReducer } from './auth/slice'
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import { notesReducer } from './notes/slice'
 
 const persistConfig = {
 	key: 'auth',
@@ -19,6 +20,7 @@ export const store = configureStore({
 		books: booksReducer,
 		filter: filterReducer,
 		auth: persistReducer(persistConfig, authReducer),
+		notes: notesReducer,
 		// [todoApi.reducerPath]: todoApi.reducer,
 	},
 	middleware: getDefaultMiddleware =>

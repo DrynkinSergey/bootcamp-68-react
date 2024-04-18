@@ -30,7 +30,7 @@ export const addTodoThunk = createAsyncThunk('todos/addTodo', async (todo, thunk
 
 export const updateStatusThunk = createAsyncThunk('todos/toggleTodo', async (todo, thunkAPI) => {
 	try {
-		const { data } = await goitApi.put(`tasks/${todo.id}`, { ...todo, completed: !todo.completed })
+		const { data } = await goitApi.patch(`tasks/${todo.id}`, { ...todo, completed: !todo.completed })
 		return data
 	} catch (error) {
 		return thunkAPI.rejectWithValue(error.message)
@@ -39,7 +39,7 @@ export const updateStatusThunk = createAsyncThunk('todos/toggleTodo', async (tod
 
 export const updateTitleThunk = createAsyncThunk('tasks/updateTitle', async (todo, thunkAPI) => {
 	try {
-		const { data } = await goitApi.put(`tasks/${todo.id}`, { ...todo, todo: prompt('Enter new title') })
+		const { data } = await goitApi.patch(`tasks/${todo.id}`, { ...todo, todo: prompt('Enter new title') })
 		return data
 	} catch (error) {
 		return thunkAPI.rejectWithValue(error.message)

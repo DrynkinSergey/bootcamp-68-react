@@ -193,6 +193,9 @@ ul{
   padding: 20px;
 
 }
+.title{
+  text-align: center;
+}
 .note{
   display: flex;
   flex-direction: column;
@@ -209,6 +212,7 @@ ul{
   gap:5px;
   flex-wrap: wrap;
   font-size: 1.2rem;
+  margin: 20px;
   li{
     border: 1px solid black;
     padding: 2px 5px;
@@ -218,7 +222,9 @@ ul{
     font-weight: bold;
   }
 }
-
+.liked{
+  background-color: lightgreen;
+}
 .loader{
   display: flex;
   justify-content: center;
