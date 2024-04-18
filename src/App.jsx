@@ -1,19 +1,22 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import Layout from './components/Layout'
-import Home from './pages/Home'
-import Todos from './pages/Todos'
-import NotFound from './pages/NotFound'
-import Register from './pages/Register'
-import Login from './pages/Login'
 import { useDispatch, useSelector } from 'react-redux'
-import { refreshThunk } from './redux/auth/operations'
-import { useEffect } from 'react'
+import { lazy, useEffect } from 'react'
+
+import Layout from './components/Layout'
+import Loader from './components/Loader'
 import PrivateRoute from './routes/PrivateRoute'
 import PublicRoute from './routes/PublicRoute'
-import Forum from './pages/Forum'
-import ForumInfo from './pages/ForumInfo'
+
+import { refreshThunk } from './redux/auth/operations'
 import { selectIsRefreshing } from './redux/auth/slice'
-import Loader from './components/Loader'
+
+const Todos = lazy(() => import('./pages/Todos'))
+const Forum = lazy(() => import('./pages/Forum'))
+const ForumInfo = lazy(() => import('./pages/ForumInfo'))
+const Register = lazy(() => import('./pages/Register'))
+const Login = lazy(() => import('./pages/Login'))
+const Home = lazy(() => import('./pages/Home'))
+const NotFound = lazy(() => import('./pages/NotFound'))
 
 const App = () => {
 	const dispatch = useDispatch()
