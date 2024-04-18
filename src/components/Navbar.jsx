@@ -15,8 +15,13 @@ const Navbar = () => {
 				<li>
 					<NavLink to='/'>Home</NavLink>
 				</li>
+
 				<li>
 					<NavLink to='/todos'>Todos</NavLink>
+				</li>
+
+				<li>
+					<NavLink to='/blog'>Forum</NavLink>
 				</li>
 				{!isLoggedIn && (
 					<>
